@@ -1207,6 +1207,29 @@ describe('PoComboBaseComponent:', () => {
       expect(spyvalidateValue).toHaveBeenCalled();
     });
 
+    it('verifyComboOptions: Should allow items with the same label`', () => {
+      component.options = [
+        {
+          label: 'Teste',
+          options: [
+            { label: 'Teste1', value: 'Teste1' },
+            { label: 'Teste1.2', value: 'Teste1.2' }
+          ]
+        },
+        {
+          label: 'Teste2',
+          options: [
+            { label: 'Teste1', value: 'value1' },
+            { label: 'Teste2.2', value: 'value2' }
+          ]
+        }
+      ];
+
+      const expectedValue = component['verifyComboOptions'](component.options);
+
+      expect(expectedValue).toEqual(component.options);
+    });
+
     it('verifyComboOptions: should verify each option and return a properly options list`', () => {
       component.options = [
         { label: 'labelA', value: 'valueA' },
@@ -1228,6 +1251,7 @@ describe('PoComboBaseComponent:', () => {
 
       const formattedOptions = [
         { label: 'valueA', value: 'valueA' },
+        { label: 'labelB', value: 'valueB' },
         { label: 'labelB', value: 'valueB' }
       ];
       const expectedValue = component['verifyComboOptions'](component.options);
