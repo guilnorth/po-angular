@@ -266,10 +266,12 @@ export class PoDecimalComponent extends PoInputBaseComponent implements AfterVie
   }
 
   extraValidation(abstractControl: AbstractControl): { [key: string]: any } {
+    const lengthValue = (abstractControl.value + '').length;
+
     // Verifica se já possui algum error pattern padrão.
     this.errorPattern = this.errorPattern !== 'Valor Inválido' ? this.errorPattern : '';
 
-    if (minFailed(this.min, abstractControl.value)) {
+    if (minFailed(this.min, abstractControl.value) || minFailed(lengthValue, poDecimalTotalLengthLimit)) {
       return {
         min: {
           valid: false
@@ -277,7 +279,7 @@ export class PoDecimalComponent extends PoInputBaseComponent implements AfterVie
       };
     }
 
-    if (maxFailed(this.max, abstractControl.value)) {
+    if (maxFailed(this.max, abstractControl.value) || maxFailed(poDecimalTotalLengthLimit, lengthValue)) {
       return {
         max: {
           valid: false
