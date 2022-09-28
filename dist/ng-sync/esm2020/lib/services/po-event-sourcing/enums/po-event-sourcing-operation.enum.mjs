@@ -1,0 +1,17 @@
+/**
+ * @docsPrivate
+ *
+ * Define as operações realizadas no sync.
+ */
+export var PoEventSourcingOperation;
+(function (PoEventSourcingOperation) {
+    // Operação de exclusão.
+    PoEventSourcingOperation["Delete"] = "DELETE";
+    // Operação de requisição HTTP.
+    PoEventSourcingOperation["Http"] = "HTTP";
+    // Operação de inserção.
+    PoEventSourcingOperation["Insert"] = "INSERT";
+    // Operação de alteração.
+    PoEventSourcingOperation["Update"] = "UPDATE";
+})(PoEventSourcingOperation || (PoEventSourcingOperation = {}));
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicG8tZXZlbnQtc291cmNpbmctb3BlcmF0aW9uLmVudW0uanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi8uLi8uLi8uLi8uLi8uLi8uLi9wcm9qZWN0cy9zeW5jL3NyYy9saWIvc2VydmljZXMvcG8tZXZlbnQtc291cmNpbmcvZW51bXMvcG8tZXZlbnQtc291cmNpbmctb3BlcmF0aW9uLmVudW0udHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7Ozs7R0FJRztBQUVILE1BQU0sQ0FBTixJQUFZLHdCQVlYO0FBWkQsV0FBWSx3QkFBd0I7SUFDbEMsd0JBQXdCO0lBQ3hCLDZDQUFpQixDQUFBO0lBRWpCLCtCQUErQjtJQUMvQix5Q0FBYSxDQUFBO0lBRWIsd0JBQXdCO0lBQ3hCLDZDQUFpQixDQUFBO0lBRWpCLHlCQUF5QjtJQUN6Qiw2Q0FBaUIsQ0FBQTtBQUNuQixDQUFDLEVBWlcsd0JBQXdCLEtBQXhCLHdCQUF3QixRQVluQyIsInNvdXJjZXNDb250ZW50IjpbIi8qKlxyXG4gKiBAZG9jc1ByaXZhdGVcclxuICpcclxuICogRGVmaW5lIGFzIG9wZXJhw6fDtWVzIHJlYWxpemFkYXMgbm8gc3luYy5cclxuICovXHJcblxyXG5leHBvcnQgZW51bSBQb0V2ZW50U291cmNpbmdPcGVyYXRpb24ge1xyXG4gIC8vIE9wZXJhw6fDo28gZGUgZXhjbHVzw6NvLlxyXG4gIERlbGV0ZSA9ICdERUxFVEUnLFxyXG5cclxuICAvLyBPcGVyYcOnw6NvIGRlIHJlcXVpc2nDp8OjbyBIVFRQLlxyXG4gIEh0dHAgPSAnSFRUUCcsXHJcblxyXG4gIC8vIE9wZXJhw6fDo28gZGUgaW5zZXLDp8Ojby5cclxuICBJbnNlcnQgPSAnSU5TRVJUJyxcclxuXHJcbiAgLy8gT3BlcmHDp8OjbyBkZSBhbHRlcmHDp8Ojby5cclxuICBVcGRhdGUgPSAnVVBEQVRFJ1xyXG59XHJcbiJdfQ==

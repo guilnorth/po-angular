@@ -7,8 +7,8 @@ export declare class PoPageJobSchedulerParametersComponent implements AfterViewI
     literals: any;
     parameters: Array<PoDynamicFormField>;
     /**
-    * Componente customizado para parametrizações
-    */
+     * Componente customizado para parametrizações
+     */
     component: any;
     /**
      * Propriedades de @Input e @Output do componente customizado em formato chave: valor
