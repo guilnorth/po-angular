@@ -1,0 +1,15 @@
+export const poToasterLiterals = {
+    en: {
+        close: 'Close'
+    },
+    es: {
+        close: 'Cerrar'
+    },
+    pt: {
+        close: 'Fechar'
+    },
+    ru: {
+        close: 'близко'
+    }
+};
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicG8tdG9hc3Rlci5saXRlcmFscy5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uLy4uLy4uLy4uLy4uLy4uL3Byb2plY3RzL3VpL3NyYy9saWIvc2VydmljZXMvcG8tbm90aWZpY2F0aW9uL3BvLXRvYXN0ZXIvcG8tdG9hc3Rlci5saXRlcmFscy50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSxNQUFNLENBQUMsTUFBTSxpQkFBaUIsR0FBRztJQUMvQixFQUFFLEVBQUU7UUFDRixLQUFLLEVBQUUsT0FBTztLQUNmO0lBQ0QsRUFBRSxFQUFFO1FBQ0YsS0FBSyxFQUFFLFFBQVE7S0FDaEI7SUFDRCxFQUFFLEVBQUU7UUFDRixLQUFLLEVBQUUsUUFBUTtLQUNoQjtJQUNELEVBQUUsRUFBRTtRQUNGLEtBQUssRUFBRSxRQUFRO0tBQ2hCO0NBQ0YsQ0FBQyIsInNvdXJjZXNDb250ZW50IjpbImV4cG9ydCBjb25zdCBwb1RvYXN0ZXJMaXRlcmFscyA9IHtcclxuICBlbjoge1xyXG4gICAgY2xvc2U6ICdDbG9zZSdcclxuICB9LFxyXG4gIGVzOiB7XHJcbiAgICBjbG9zZTogJ0NlcnJhcidcclxuICB9LFxyXG4gIHB0OiB7XHJcbiAgICBjbG9zZTogJ0ZlY2hhcidcclxuICB9LFxyXG4gIHJ1OiB7XHJcbiAgICBjbG9zZTogJ9Cx0LvQuNC30LrQvidcclxuICB9XHJcbn07XHJcbiJdfQ==

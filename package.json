@@ -8,6 +8,9 @@
     "type": "git",
     "url": "https://github.com/po-ui/po-angular"
   },
+  "precommit": [
+    "build"
+  ],
   "scripts": {
     "ng": "ng",
     "tsc": "tsc",

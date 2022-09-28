@@ -1,0 +1,15 @@
+/**
+ * @usedBy PoDynamicFormComponent
+ *
+ * @description
+ *
+ * Enum para definição do tipo de componente a ser renderizado.
+ */
+export var ForceOptionComponentEnum;
+(function (ForceOptionComponentEnum) {
+    /** Força a renderização de um po-radio-group independente da quantidade do opções */
+    ForceOptionComponentEnum["radioGroup"] = "radioGroup";
+    /** Força a renderização de um po-select independente da quantidade do opções */
+    ForceOptionComponentEnum["select"] = "select";
+})(ForceOptionComponentEnum || (ForceOptionComponentEnum = {}));
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicG8tZHluYW1pYy1maWVsZC1mb3JjZS1jb21wb25lbnQuZW51bS5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uLy4uLy4uLy4uLy4uL3Byb2plY3RzL3VpL3NyYy9saWIvY29tcG9uZW50cy9wby1keW5hbWljL3BvLWR5bmFtaWMtZmllbGQtZm9yY2UtY29tcG9uZW50LmVudW0udHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7Ozs7OztHQU1HO0FBQ0gsTUFBTSxDQUFOLElBQVksd0JBTVg7QUFORCxXQUFZLHdCQUF3QjtJQUNsQyxxRkFBcUY7SUFDckYscURBQXlCLENBQUE7SUFFekIsZ0ZBQWdGO0lBQ2hGLDZDQUFpQixDQUFBO0FBQ25CLENBQUMsRUFOVyx3QkFBd0IsS0FBeEIsd0JBQXdCLFFBTW5DIiwic291cmNlc0NvbnRlbnQiOlsiLyoqXHJcbiAqIEB1c2VkQnkgUG9EeW5hbWljRm9ybUNvbXBvbmVudFxyXG4gKlxyXG4gKiBAZGVzY3JpcHRpb25cclxuICpcclxuICogRW51bSBwYXJhIGRlZmluacOnw6NvIGRvIHRpcG8gZGUgY29tcG9uZW50ZSBhIHNlciByZW5kZXJpemFkby5cclxuICovXHJcbmV4cG9ydCBlbnVtIEZvcmNlT3B0aW9uQ29tcG9uZW50RW51bSB7XHJcbiAgLyoqIEZvcsOnYSBhIHJlbmRlcml6YcOnw6NvIGRlIHVtIHBvLXJhZGlvLWdyb3VwIGluZGVwZW5kZW50ZSBkYSBxdWFudGlkYWRlIGRvIG9ww6fDtWVzICovXHJcbiAgcmFkaW9Hcm91cCA9ICdyYWRpb0dyb3VwJyxcclxuXHJcbiAgLyoqIEZvcsOnYSBhIHJlbmRlcml6YcOnw6NvIGRlIHVtIHBvLXNlbGVjdCBpbmRlcGVuZGVudGUgZGEgcXVhbnRpZGFkZSBkbyBvcMOnw7VlcyAqL1xyXG4gIHNlbGVjdCA9ICdzZWxlY3QnXHJcbn1cclxuIl19
