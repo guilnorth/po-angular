@@ -174,6 +174,15 @@ export class PoPageJobSchedulerBaseComponent implements OnDestroy {
     this.model = this.poPageJobSchedulerService.convertToJobSchedulerInternal(value);
   }
 
+  /**
+   * Componente customizado que será renderizado na etapa de parametrizações
+   */
+  @Input('p-component') component: any;
+  /**
+   * Propriedades de @Input e @Output do componente customizado em formato chave: valor
+   */
+  @Input('p-data-props') dataProps: Object;
+
   model: PoJobSchedulerInternal = new PoPageJobSchedulerInternal();
 
   private _subscription = new Subscription();

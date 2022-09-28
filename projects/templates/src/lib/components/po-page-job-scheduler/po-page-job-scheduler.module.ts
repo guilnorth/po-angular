@@ -21,13 +21,17 @@ import { PoPageJobSchedulerLookupService } from './po-page-job-scheduler-lookup.
 import { PoPageJobSchedulerParametersComponent } from './po-page-job-scheduler-parameters/po-page-job-scheduler-parameters.component';
 import { PoPageJobSchedulerService } from './po-page-job-scheduler.service';
 import { PoPageJobSchedulerSummaryComponent } from './po-page-job-scheduler-summary/po-page-job-scheduler-summary.component';
+import { DynamicContentComponent } from './po-page-job-scheduler-parameters/dynamic-content.component';
+import { DynamicContentDirective } from './po-page-job-scheduler-parameters/dynamic-component.directive';
 
 @NgModule({
   declarations: [
     PoPageJobSchedulerComponent,
     PoPageJobSchedulerExecutionComponent,
     PoPageJobSchedulerParametersComponent,
-    PoPageJobSchedulerSummaryComponent
+    PoPageJobSchedulerSummaryComponent,
+    DynamicContentComponent,
+    DynamicContentDirective
   ],
   exports: [PoPageJobSchedulerComponent],
   imports: [

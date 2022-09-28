@@ -175,7 +175,7 @@ export class PoPageJobSchedulerComponent extends PoPageJobSchedulerBaseComponent
   }
 
   onChangeProcess(process: { processId: string; existAPI: boolean }) {
-    if (process.existAPI && process.processId && this.parametersEmpty) {
+    if (process.existAPI && process.processId && this.parametersEmpty && !this.component) {
       this.getParametersByProcess(process.processId);
       if (!this.isEdit) {
         this.model.executionParameter = {};

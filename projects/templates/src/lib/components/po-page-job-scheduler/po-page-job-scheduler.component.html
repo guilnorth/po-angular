@@ -15,6 +15,7 @@
         <div class="po-row">
           <po-page-job-scheduler-execution
             [p-no-parameters]="parametersEmpty"
+            [p-no-custom-params-component]="!component"
             [hidden]="step !== 1"
             #schedulerExecution
             class="po-md-12"
@@ -32,6 +33,8 @@
             [p-literals]="literals"
             [p-parameters]="parameters || []"
             [(p-value)]="model.executionParameter"
+            [p-component]="component"
+            [p-data-props]="dataProps"
           >
           </po-page-job-scheduler-parameters>
 

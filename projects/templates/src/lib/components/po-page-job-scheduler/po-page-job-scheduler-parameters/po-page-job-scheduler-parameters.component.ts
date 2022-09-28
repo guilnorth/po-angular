@@ -14,6 +14,15 @@ export class PoPageJobSchedulerParametersComponent implements AfterViewInit {
 
   @Input('p-parameters') parameters: Array<PoDynamicFormField> = [];
 
+  /**
+   * Componente customizado para parametrizações
+   */
+  @Input('p-component') component: any;
+  /**
+   * Propriedades de @Input e @Output do componente customizado em formato chave: valor
+   */
+  @Input('p-data-props') dataProps: Object;
+
   @Input('p-value') value;
 
   @Output('p-valueChange') valueChange: EventEmitter<any> = new EventEmitter<any>();

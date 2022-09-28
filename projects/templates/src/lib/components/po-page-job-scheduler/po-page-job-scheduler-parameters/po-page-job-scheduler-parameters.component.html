@@ -1,4 +1,10 @@
-<ng-container *ngIf="parameters && parameters.length; then formFieldsTemplate; else parametersNotFoundTemplate">
+<ng-container
+  *ngIf="
+    parameters && parameters.length;
+    then formFieldsTemplate;
+    else (component && dynamicContent) || parametersNotFoundTemplate
+  "
+>
 </ng-container>
 
 <ng-template #parametersNotFoundTemplate>
@@ -14,4 +20,8 @@
   <form #parametersForm="ngForm">
     <po-dynamic-form p-group-form [p-fields]="parameters" [p-value]="value"> </po-dynamic-form>
   </form>
+</ng-template>
+
+<ng-template #dynamicContent>
+  <dynamic-load-component [component]="component" [dataProps]="dataProps"> </dynamic-load-component>
 </ng-template>
