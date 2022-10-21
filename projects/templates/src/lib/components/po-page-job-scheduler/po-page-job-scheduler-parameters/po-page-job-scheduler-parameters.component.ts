@@ -15,10 +15,14 @@ export class PoPageJobSchedulerParametersComponent implements AfterViewInit {
   @Input('p-parameters') parameters: Array<PoDynamicFormField> = [];
 
   /**
+   * @description
    * Componente customizado para parametrizações
+   * @todo criar interface
    */
   @Input('p-component') component: any;
+
   /**
+   * @description
    * Propriedades de @Input e @Output do componente customizado em formato chave: valor
    */
   @Input('p-data-props') dataProps: Object;

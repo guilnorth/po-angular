@@ -59,6 +59,8 @@ export class PoPageJobSchedulerComponent extends PoPageJobSchedulerBaseComponent
   step: number = 1;
   parametersEmpty: boolean = true;
 
+  stepParametersInitialized = false;
+
   readonly steps: Array<PoStepperItem> = [];
 
   private backPageAction: PoPageAction = {
@@ -142,6 +144,8 @@ export class PoPageJobSchedulerComponent extends PoPageJobSchedulerBaseComponent
   }
 
   nextStep(stepNumber: number) {
+    this.stepParametersInitialized = this.stepParametersInitialized || stepNumber === 2;
+
     if (stepNumber > 1 && this.schedulerExecution.form.invalid) {
       this.markAsDirtyInvalidControls(this.schedulerExecution.form.controls);
       return;

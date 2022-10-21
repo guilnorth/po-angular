@@ -27,7 +27,8 @@
           </po-page-job-scheduler-execution>
 
           <po-page-job-scheduler-parameters
-            *ngIf="step === 2"
+            *ngIf="stepParametersInitialized"
+            [hidden]="step !== 2"
             #schedulerParameters
             class="po-md-12"
             [p-literals]="literals"
