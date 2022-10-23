@@ -2,6 +2,7 @@ import { AfterViewInit, Component, EventEmitter, Input, Output, ViewChild } from
 import { NgForm } from '@angular/forms';
 
 import { PoDynamicFormField } from '@po-ui/ng-components';
+import { PoJobSchedulerCustomSteps } from '../interfaces/po-job-scheduler-custom-steps.interface';
 
 @Component({
   selector: 'po-page-job-scheduler-parameters',
@@ -15,17 +16,13 @@ export class PoPageJobSchedulerParametersComponent implements AfterViewInit {
   @Input('p-parameters') parameters: Array<PoDynamicFormField> = [];
 
   /**
+   * @optional
+   *
    * @description
    * Componente customizado para parametrizações
-   * @todo criar interface
+   * @todo trocar para ng-template
    */
-  @Input('p-component') component: any;
-
-  /**
-   * @description
-   * Propriedades de @Input e @Output do componente customizado em formato chave: valor
-   */
-  @Input('p-data-props') dataProps: Object;
+  @Input('p-custom-component') customComponent?: PoJobSchedulerCustomSteps['parameters'];
 
   @Input('p-value') value;
 

@@ -7,6 +7,7 @@ import { PoJobSchedulerInternal } from './interfaces/po-job-scheduler-internal.i
 import { PoPageJobSchedulerInternal } from './po-page-job-scheduler-internal';
 import { PoPageJobSchedulerService } from './po-page-job-scheduler.service';
 import { Subscription } from 'rxjs';
+import { PoJobSchedulerCustomSteps } from './interfaces/po-job-scheduler-custom-steps.interface';
 
 /**
  * @description
@@ -175,13 +176,11 @@ export class PoPageJobSchedulerBaseComponent implements OnDestroy {
   }
 
   /**
+   * @description
+   * @todo stepsCustomization
    * Componente customizado que será renderizado na etapa de parametrizações
    */
-  @Input('p-component') component: any;
-  /**
-   * Propriedades de @Input e @Output do componente customizado em formato chave: valor
-   */
-  @Input('p-data-props') dataProps: Object;
+  @Input('p-custom-steps') stepsCustomization: PoJobSchedulerCustomSteps;
 
   model: PoJobSchedulerInternal = new PoPageJobSchedulerInternal();
 

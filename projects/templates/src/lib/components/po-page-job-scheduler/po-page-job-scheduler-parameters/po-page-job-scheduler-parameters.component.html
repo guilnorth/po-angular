@@ -2,7 +2,7 @@
   *ngIf="
     parameters && parameters.length;
     then formFieldsTemplate;
-    else (component && dynamicContent) || parametersNotFoundTemplate
+    else (customComponent && dynamicContent) || parametersNotFoundTemplate
   "
 >
 </ng-container>
@@ -23,5 +23,10 @@
 </ng-template>
 
 <ng-template #dynamicContent>
-  <dynamic-load-component [component]="component" [dataProps]="dataProps"> </dynamic-load-component>
+  <dynamic-load-component
+    [component]="customComponent.component"
+    [dataProps]="customComponent?.properties"
+    #poParamsCustom
+  >
+  </dynamic-load-component>
 </ng-template>

@@ -179,7 +179,7 @@ export class PoPageJobSchedulerComponent extends PoPageJobSchedulerBaseComponent
   }
 
   onChangeProcess(process: { processId: string; existAPI: boolean }) {
-    if (process.existAPI && process.processId && this.parametersEmpty && !this.component) {
+    if (process.existAPI && process.processId && this.parametersEmpty && !this.stepsCustomization.parameters) {
       this.getParametersByProcess(process.processId);
       if (!this.isEdit) {
         this.model.executionParameter = {};
@@ -207,6 +207,7 @@ export class PoPageJobSchedulerComponent extends PoPageJobSchedulerBaseComponent
     await saveOperation.toPromise();
     this.poNotification.success(msgSuccess);
     this.resetJobSchedulerForm();
+    // @todo emitir evento de finalização
   }
 
   private getParametersByProcess(process: any) {
