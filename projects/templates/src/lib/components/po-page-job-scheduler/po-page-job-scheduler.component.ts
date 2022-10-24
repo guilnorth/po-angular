@@ -1,5 +1,5 @@
 import { ActivatedRoute, Router } from '@angular/router';
-import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Component, ContentChild, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
 import { Observable } from 'rxjs';
@@ -21,6 +21,7 @@ import { PoPageJobSchedulerBaseComponent } from './po-page-job-scheduler-base.co
 import { poPageJobSchedulerLiteralsDefault } from './po-page-job-scheduler-literals';
 import { PoPageJobSchedulerLookupService } from './po-page-job-scheduler-lookup.service';
 import { PoPageJobSchedulerService } from './po-page-job-scheduler.service';
+import { PoJobSchedulerParametersTemplateDirective } from './po-page-job-scheduler-parameters/po-job-scheduler-parameters-template/po-job-scheduler-parameters-template.directive';
 
 /**
  * @docsExtends PoPageJobSchedulerBaseComponent
@@ -48,6 +49,8 @@ import { PoPageJobSchedulerService } from './po-page-job-scheduler.service';
 export class PoPageJobSchedulerComponent extends PoPageJobSchedulerBaseComponent implements OnInit {
   @ViewChild('schedulerExecution', { static: true }) schedulerExecution: { form: NgForm };
   @ViewChild('schedulerParameters') schedulerParameters: { form: NgForm };
+  @ContentChild(PoJobSchedulerParametersTemplateDirective)
+  parametersTemplate: PoJobSchedulerParametersTemplateDirective;
 
   isEdit = false;
   literals = {
@@ -179,7 +182,7 @@ export class PoPageJobSchedulerComponent extends PoPageJobSchedulerBaseComponent
   }
 
   onChangeProcess(process: { processId: string; existAPI: boolean }) {
-    if (process.existAPI && process.processId && this.parametersEmpty && !this.stepsCustomization.parameters) {
+    if (process.existAPI && process.processId && this.parametersEmpty && !this.parametersTemplate?.templateRef) {
       this.getParametersByProcess(process.processId);
       if (!this.isEdit) {
         this.model.executionParameter = {};

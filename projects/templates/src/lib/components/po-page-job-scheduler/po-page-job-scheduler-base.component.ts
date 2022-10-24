@@ -180,7 +180,7 @@ export class PoPageJobSchedulerBaseComponent implements OnDestroy {
    * @todo stepsCustomization
    * Componente customizado que será renderizado na etapa de parametrizações
    */
-  @Input('p-custom-steps') stepsCustomization: PoJobSchedulerCustomSteps;
+  // @Input('p-custom-steps') stepsCustomization: PoJobSchedulerCustomSteps; //@todo => change to ng-template value
 
   model: PoJobSchedulerInternal = new PoPageJobSchedulerInternal();
 
