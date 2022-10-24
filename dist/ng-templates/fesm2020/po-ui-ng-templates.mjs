@@ -7658,15 +7658,18 @@ PoPageJobSchedulerModule.ɵinj = /*@__PURE__*/ i0.ɵɵdefineInjector({ providers
         type: NgModule,
         args: [{
                 declarations: [
+                    PoJobSchedulerParametersTemplateDirective,
                     PoPageJobSchedulerComponent,
                     PoPageJobSchedulerExecutionComponent,
                     PoPageJobSchedulerParametersComponent,
                     PoPageJobSchedulerSummaryComponent,
                     DynamicContentComponent,
                     DynamicContentDirective,
-                    PoJobSchedulerParametersTemplateDirective
                 ],
-                exports: [PoPageJobSchedulerComponent, PoJobSchedulerParametersTemplateDirective],
+                exports: [
+                    PoJobSchedulerParametersTemplateDirective,
+                    PoPageJobSchedulerComponent
+                ],
                 imports: [
                     CommonModule,
                     FormsModule,
@@ -7684,13 +7687,13 @@ PoPageJobSchedulerModule.ɵinj = /*@__PURE__*/ i0.ɵɵdefineInjector({ providers
                 providers: [PoPageJobSchedulerService, PoPageJobSchedulerLookupService]
             }]
     }], null, null); })();
-(function () { (typeof ngJitMode === "undefined" || ngJitMode) && i0.ɵɵsetNgModuleScope(PoPageJobSchedulerModule, { declarations: [PoPageJobSchedulerComponent,
+(function () { (typeof ngJitMode === "undefined" || ngJitMode) && i0.ɵɵsetNgModuleScope(PoPageJobSchedulerModule, { declarations: [PoJobSchedulerParametersTemplateDirective,
+        PoPageJobSchedulerComponent,
         PoPageJobSchedulerExecutionComponent,
         PoPageJobSchedulerParametersComponent,
         PoPageJobSchedulerSummaryComponent,
         DynamicContentComponent,
-        DynamicContentDirective,
-        PoJobSchedulerParametersTemplateDirective], imports: [CommonModule,
+        DynamicContentDirective], imports: [CommonModule,
         FormsModule,
         PoButtonModule,
         PoContainerModule,
@@ -7701,7 +7704,8 @@ PoPageJobSchedulerModule.ɵinj = /*@__PURE__*/ i0.ɵɵdefineInjector({ providers
         PoInfoModule,
         PoPageModule,
         PoStepperModule,
-        PoWidgetModule], exports: [PoPageJobSchedulerComponent, PoJobSchedulerParametersTemplateDirective] }); })();
+        PoWidgetModule], exports: [PoJobSchedulerParametersTemplateDirective,
+        PoPageJobSchedulerComponent] }); })();
 
 /**
  * @usedBy PoPageLoginComponent

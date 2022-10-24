@@ -7,7 +7,7 @@ import { PoJobSchedulerInternal } from './interfaces/po-job-scheduler-internal.i
 import { PoPageJobSchedulerBaseComponent } from './po-page-job-scheduler-base.component';
 import { PoPageJobSchedulerLookupService } from './po-page-job-scheduler-lookup.service';
 import { PoPageJobSchedulerService } from './po-page-job-scheduler.service';
-import { PoJobSchedulerParametersTemplateDirective } from './po-page-job-scheduler-parameters/po-job-scheduler-parameters-template/po-job-scheduler-parameters-template.directive';
+import { PoJobSchedulerParametersTemplateDirective } from './po-page-job-scheduler-parameters';
 import * as i0 from "@angular/core";
 /**
  * @docsExtends PoPageJobSchedulerBaseComponent
