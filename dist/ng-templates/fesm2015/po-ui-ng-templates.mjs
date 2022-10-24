@@ -6280,6 +6280,104 @@ PoPageDynamicTableModule.ɵinj = /*@__PURE__*/ i0.ɵɵdefineInjector({ imports: 
             PoPageDynamicModule], exports: [PoPageDynamicTableComponent] });
 })();
 
+/**
+ * @usedBy PoPageJobScheduler
+ *
+ * @description
+ *
+ * Esta diretiva permite personalizar o conteúdo da etapa de parametrização do componente de PoPageJobScheduler.
+ *
+ * > .....
+ *
+ * Para personalizar o conteúdo de cada item da lista deve-se utilizar a diretiva `p-combo-option-template` com `ng-template`
+ * dentro da *tag* `po-combo`.
+ *
+ * Para obter a referência do item atual utilize `let-option`, com isso você terá acesso aos valores e poderá personalizar sua exibição.
+ *
+ * Esta diretiva compõe-se de dois meios para uso, de forma explícita tal como em *syntax sugar*. Veja a seguir ambos, respectivamente:
+ * @todo documentar
+ * ```
+ * ...
+ * <po-combo
+ *   name="combo"
+ *   [(ngModel)]="combo"
+ *   [p-options]="options">
+ *     <ng-template p-combo-option-template let-option>
+ *       <option-template [option]="option"></option-template>
+ *     </ng-template>
+ * </po-combo>
+ * ...
+ * ```
+ *
+ * ```
+ * ...
+ * <po-combo
+ *   name="combo"
+ *   [(ngModel)]="combo"
+ *   [p-options]="options">
+ *     <div *p-combo-option-template="let option">
+ *       <option-template [option]="option"></option-template>
+ *     </div>
+ * </po-combo>
+ * ...
+ *
+ * ```
+ * Para o caso de personalização de opções com agrupamentos, deve-se seguir a mesma orientação acima. Porém, cabe ao desenvolvedor
+ * a responsabilidade de estilização dos elementos da lista, tais como título e links dos grupos. Abaixo há um exemplo de aplicação:
+ *
+ * ```
+ * ...
+ * <ng-template p-combo-option-template let-option>
+ *   <ng-container *ngIf="option.options; then optionsGroupTitle; else optionsGroupList"></ng-container>
+ *   <ng-template #optionsGroupTitle>
+ *     <p class="po-combo-item-title" [innerHtml]="option.label"></p>
+ *   </ng-template>
+ *   <ng-template #optionsGroupList>
+ *     <div class="po-combo-item">
+ *       <div class="po-row">
+ *         <po-avatar class="po-md-1" p-size="sm"></po-avatar>
+ *         <div class="po-md-11" [innerHtml]="option.label"></div>
+ *       </div>
+ *     </div>
+ *   </ng-template>
+ * </ng-template>
+ * ...
+ *
+ * ```
+ */
+class PoJobSchedulerParametersTemplateDirective {
+    // Necessário manter templateRef para o funcionamento do row template. @todo
+    constructor(templateRef) {
+        this.templateRef = templateRef;
+    }
+}
+PoJobSchedulerParametersTemplateDirective.ɵfac = function PoJobSchedulerParametersTemplateDirective_Factory(t) { return new (t || PoJobSchedulerParametersTemplateDirective)(i0.ɵɵdirectiveInject(i0.TemplateRef)); };
+PoJobSchedulerParametersTemplateDirective.ɵdir = /*@__PURE__*/ i0.ɵɵdefineDirective({ type: PoJobSchedulerParametersTemplateDirective, selectors: [["", "p-job-scheduler-parameters-template", ""]] });
+(function () {
+    (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(PoJobSchedulerParametersTemplateDirective, [{
+            type: Directive,
+            args: [{
+                    selector: '[p-job-scheduler-parameters-template]'
+                }]
+        }], function () { return [{ type: i0.TemplateRef }]; }, null);
+})();
+
+class PoJobSchedulerParametersTemplateModule {
+}
+PoJobSchedulerParametersTemplateModule.ɵfac = function PoJobSchedulerParametersTemplateModule_Factory(t) { return new (t || PoJobSchedulerParametersTemplateModule)(); };
+PoJobSchedulerParametersTemplateModule.ɵmod = /*@__PURE__*/ i0.ɵɵdefineNgModule({ type: PoJobSchedulerParametersTemplateModule });
+PoJobSchedulerParametersTemplateModule.ɵinj = /*@__PURE__*/ i0.ɵɵdefineInjector({});
+(function () {
+    (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(PoJobSchedulerParametersTemplateModule, [{
+            type: NgModule,
+            args: [{
+                    declarations: [PoJobSchedulerParametersTemplateDirective],
+                    exports: [PoJobSchedulerParametersTemplateDirective],
+                }]
+        }], null, null);
+})();
+(function () { (typeof ngJitMode === "undefined" || ngJitMode) && i0.ɵɵsetNgModuleScope(PoJobSchedulerParametersTemplateModule, { declarations: [PoJobSchedulerParametersTemplateDirective], exports: [PoJobSchedulerParametersTemplateDirective] }); })();
+
 class PoPageJobSchedulerInternal {
     constructor() {
         this.periodicity = 'single';
@@ -6771,88 +6869,6 @@ const poPageJobSchedulerLiteralsDefault = {
         from: 'до'
     }
 };
-
-/**
- * @usedBy PoPageJobScheduler
- *
- * @description
- *
- * Esta diretiva permite personalizar o conteúdo da etapa de parametrização do componente de PoPageJobScheduler.
- *
- * > .....
- *
- * Para personalizar o conteúdo de cada item da lista deve-se utilizar a diretiva `p-combo-option-template` com `ng-template`
- * dentro da *tag* `po-combo`.
- *
- * Para obter a referência do item atual utilize `let-option`, com isso você terá acesso aos valores e poderá personalizar sua exibição.
- *
- * Esta diretiva compõe-se de dois meios para uso, de forma explícita tal como em *syntax sugar*. Veja a seguir ambos, respectivamente:
- * @todo documentar
- * ```
- * ...
- * <po-combo
- *   name="combo"
- *   [(ngModel)]="combo"
- *   [p-options]="options">
- *     <ng-template p-combo-option-template let-option>
- *       <option-template [option]="option"></option-template>
- *     </ng-template>
- * </po-combo>
- * ...
- * ```
- *
- * ```
- * ...
- * <po-combo
- *   name="combo"
- *   [(ngModel)]="combo"
- *   [p-options]="options">
- *     <div *p-combo-option-template="let option">
- *       <option-template [option]="option"></option-template>
- *     </div>
- * </po-combo>
- * ...
- *
- * ```
- * Para o caso de personalização de opções com agrupamentos, deve-se seguir a mesma orientação acima. Porém, cabe ao desenvolvedor
- * a responsabilidade de estilização dos elementos da lista, tais como título e links dos grupos. Abaixo há um exemplo de aplicação:
- *
- * ```
- * ...
- * <ng-template p-combo-option-template let-option>
- *   <ng-container *ngIf="option.options; then optionsGroupTitle; else optionsGroupList"></ng-container>
- *   <ng-template #optionsGroupTitle>
- *     <p class="po-combo-item-title" [innerHtml]="option.label"></p>
- *   </ng-template>
- *   <ng-template #optionsGroupList>
- *     <div class="po-combo-item">
- *       <div class="po-row">
- *         <po-avatar class="po-md-1" p-size="sm"></po-avatar>
- *         <div class="po-md-11" [innerHtml]="option.label"></div>
- *       </div>
- *     </div>
- *   </ng-template>
- * </ng-template>
- * ...
- *
- * ```
- */
-class PoJobSchedulerParametersTemplateDirective {
-    // Necessário manter templateRef para o funcionamento do row template. @todo
-    constructor(templateRef) {
-        this.templateRef = templateRef;
-    }
-}
-PoJobSchedulerParametersTemplateDirective.ɵfac = function PoJobSchedulerParametersTemplateDirective_Factory(t) { return new (t || PoJobSchedulerParametersTemplateDirective)(i0.ɵɵdirectiveInject(i0.TemplateRef)); };
-PoJobSchedulerParametersTemplateDirective.ɵdir = /*@__PURE__*/ i0.ɵɵdefineDirective({ type: PoJobSchedulerParametersTemplateDirective, selectors: [["", "p-job-scheduler-parameters-template", ""]] });
-(function () {
-    (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(PoJobSchedulerParametersTemplateDirective, [{
-            type: Directive,
-            args: [{
-                    selector: '[p-job-scheduler-parameters-template]'
-                }]
-        }], function () { return [{ type: i0.TemplateRef }]; }, null);
-})();
 
 class PoPageJobSchedulerLookupService {
     constructor(poPageJobSchedulerService) {
@@ -7951,13 +7967,13 @@ PoPageJobSchedulerModule.ɵinj = /*@__PURE__*/ i0.ɵɵdefineInjector({ providers
         PoInfoModule,
         PoPageModule,
         PoStepperModule,
-        PoWidgetModule] });
+        PoWidgetModule,
+        PoJobSchedulerParametersTemplateModule] });
 (function () {
     (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(PoPageJobSchedulerModule, [{
             type: NgModule,
             args: [{
                     declarations: [
-                        PoJobSchedulerParametersTemplateDirective,
                         PoPageJobSchedulerComponent,
                         PoPageJobSchedulerExecutionComponent,
                         PoPageJobSchedulerParametersComponent,
@@ -7965,10 +7981,7 @@ PoPageJobSchedulerModule.ɵinj = /*@__PURE__*/ i0.ɵɵdefineInjector({ providers
                         DynamicContentComponent,
                         DynamicContentDirective,
                     ],
-                    exports: [
-                        PoJobSchedulerParametersTemplateDirective,
-                        PoPageJobSchedulerComponent
-                    ],
+                    exports: [PoPageJobSchedulerComponent],
                     imports: [
                         CommonModule,
                         FormsModule,
@@ -7981,15 +7994,15 @@ PoPageJobSchedulerModule.ɵinj = /*@__PURE__*/ i0.ɵɵdefineInjector({ providers
                         PoInfoModule,
                         PoPageModule,
                         PoStepperModule,
-                        PoWidgetModule
+                        PoWidgetModule,
+                        PoJobSchedulerParametersTemplateModule
                     ],
                     providers: [PoPageJobSchedulerService, PoPageJobSchedulerLookupService]
                 }]
         }], null, null);
 })();
 (function () {
-    (typeof ngJitMode === "undefined" || ngJitMode) && i0.ɵɵsetNgModuleScope(PoPageJobSchedulerModule, { declarations: [PoJobSchedulerParametersTemplateDirective,
-            PoPageJobSchedulerComponent,
+    (typeof ngJitMode === "undefined" || ngJitMode) && i0.ɵɵsetNgModuleScope(PoPageJobSchedulerModule, { declarations: [PoPageJobSchedulerComponent,
             PoPageJobSchedulerExecutionComponent,
             PoPageJobSchedulerParametersComponent,
             PoPageJobSchedulerSummaryComponent,
@@ -8005,8 +8018,8 @@ PoPageJobSchedulerModule.ɵinj = /*@__PURE__*/ i0.ɵɵdefineInjector({ providers
             PoInfoModule,
             PoPageModule,
             PoStepperModule,
-            PoWidgetModule], exports: [PoJobSchedulerParametersTemplateDirective,
-            PoPageJobSchedulerComponent] });
+            PoWidgetModule,
+            PoJobSchedulerParametersTemplateModule], exports: [PoPageJobSchedulerComponent] });
 })();
 
 /**
@@ -9695,7 +9708,8 @@ PoComponentsModule.ɵinj = /*@__PURE__*/ i0.ɵɵdefineInjector({ imports: [PoMod
         PoPageDynamicSearchModule,
         PoPageDynamicTableModule,
         PoPageJobSchedulerModule,
-        PoPageLoginModule] });
+        PoPageLoginModule,
+        PoJobSchedulerParametersTemplateModule] });
 (function () {
     (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(PoComponentsModule, [{
             type: NgModule,
@@ -9722,7 +9736,8 @@ PoComponentsModule.ɵinj = /*@__PURE__*/ i0.ɵɵdefineInjector({ imports: [PoMod
                         PoPageDynamicSearchModule,
                         PoPageDynamicTableModule,
                         PoPageJobSchedulerModule,
-                        PoPageLoginModule
+                        PoPageLoginModule,
+                        PoJobSchedulerParametersTemplateModule
                     ]
                 }]
         }], null, null);
@@ -9746,7 +9761,8 @@ PoComponentsModule.ɵinj = /*@__PURE__*/ i0.ɵɵdefineInjector({ imports: [PoMod
             PoPageDynamicSearchModule,
             PoPageDynamicTableModule,
             PoPageJobSchedulerModule,
-            PoPageLoginModule] });
+            PoPageLoginModule,
+            PoJobSchedulerParametersTemplateModule] });
 })();
 
 class PoServicesModule {
@@ -9785,5 +9801,5 @@ PoTemplatesModule.ɵinj = /*@__PURE__*/ i0.ɵɵdefineInjector({ imports: [PoComp
  * Generated bundle index. Do not edit.
  */
 
-export { PoComponentsModule, PoJobSchedulerParametersTemplateDirective, PoModalPasswordRecoveryComponent, PoModalPasswordRecoveryErrorMessageComponent, PoModalPasswordRecoveryModalContent, PoModalPasswordRecoveryModule, PoModalPasswordRecoveryType, PoPageBackgroundComponent, PoPageBackgroundModule, PoPageBlockedUserComponent, PoPageBlockedUserContactsComponent, PoPageBlockedUserModule, PoPageBlockedUserReason, PoPageBlockedUserReasonComponent, PoPageChangePasswordComponent, PoPageChangePasswordModule, PoPageCustomizationModule, PoPageCustomizationService, PoPageDynamicDetailComponent, PoPageDynamicDetailModule, PoPageDynamicEditComponent, PoPageDynamicEditModule, PoPageDynamicModule, PoPageDynamicSearchComponent, PoPageDynamicSearchModule, PoPageDynamicService, PoPageDynamicTableComponent, PoPageDynamicTableModule, PoPageJobSchedulerComponent, PoPageJobSchedulerModule, PoPageLoginAuthenticationType, PoPageLoginComponent, PoPageLoginModule, PoServicesModule, PoTemplatesModule, poModalPasswordRecoveryLiterals, poPageBlockedUserButtonLiterals, poPageBlockedUserLiterals, poPageChangePasswordLiterals, poPageDynamicDetailLiteralsDefault, poPageDynamicEditLiteralsDefault, poPageDynamicLiterals };
+export { PoComponentsModule, PoJobSchedulerParametersTemplateDirective, PoJobSchedulerParametersTemplateModule, PoModalPasswordRecoveryComponent, PoModalPasswordRecoveryErrorMessageComponent, PoModalPasswordRecoveryModalContent, PoModalPasswordRecoveryModule, PoModalPasswordRecoveryType, PoPageBackgroundComponent, PoPageBackgroundModule, PoPageBlockedUserComponent, PoPageBlockedUserContactsComponent, PoPageBlockedUserModule, PoPageBlockedUserReason, PoPageBlockedUserReasonComponent, PoPageChangePasswordComponent, PoPageChangePasswordModule, PoPageCustomizationModule, PoPageCustomizationService, PoPageDynamicDetailComponent, PoPageDynamicDetailModule, PoPageDynamicEditComponent, PoPageDynamicEditModule, PoPageDynamicModule, PoPageDynamicSearchComponent, PoPageDynamicSearchModule, PoPageDynamicService, PoPageDynamicTableComponent, PoPageDynamicTableModule, PoPageJobSchedulerComponent, PoPageJobSchedulerModule, PoPageLoginAuthenticationType, PoPageLoginComponent, PoPageLoginModule, PoServicesModule, PoTemplatesModule, poModalPasswordRecoveryLiterals, poPageBlockedUserButtonLiterals, poPageBlockedUserLiterals, poPageChangePasswordLiterals, poPageDynamicDetailLiteralsDefault, poPageDynamicEditLiteralsDefault, poPageDynamicLiterals };
 //# sourceMappingURL=po-ui-ng-templates.mjs.map
