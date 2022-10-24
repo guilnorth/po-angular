@@ -7,6 +7,7 @@ import { PoJobSchedulerInternal } from './interfaces/po-job-scheduler-internal.i
 import { PoPageJobSchedulerBaseComponent } from './po-page-job-scheduler-base.component';
 import { PoPageJobSchedulerLookupService } from './po-page-job-scheduler-lookup.service';
 import { PoPageJobSchedulerService } from './po-page-job-scheduler.service';
+import { PoJobSchedulerParametersTemplateDirective } from './po-page-job-scheduler-parameters/po-job-scheduler-parameters-template/po-job-scheduler-parameters-template.directive';
 import * as i0 from "@angular/core";
 /**
  * @docsExtends PoPageJobSchedulerBaseComponent
@@ -31,6 +32,7 @@ export declare class PoPageJobSchedulerComponent extends PoPageJobSchedulerBaseC
     schedulerParameters: {
         form: NgForm;
     };
+    parametersTemplate: PoJobSchedulerParametersTemplateDirective;
     isEdit: boolean;
     literals: {
         at: string;
@@ -84,6 +86,7 @@ export declare class PoPageJobSchedulerComponent extends PoPageJobSchedulerBaseC
     saveOperation: Observable<any>;
     step: number;
     parametersEmpty: boolean;
+    stepParametersInitialized: boolean;
     readonly steps: Array<PoStepperItem>;
     private backPageAction;
     private concludePageAction;
@@ -112,5 +115,5 @@ export declare class PoPageJobSchedulerComponent extends PoPageJobSchedulerBaseC
     private save;
     private setModelRecurrent;
     static ɵfac: i0.ɵɵFactoryDeclaration<PoPageJobSchedulerComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<PoPageJobSchedulerComponent, "po-page-job-scheduler", never, {}, {}, never, never, false>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<PoPageJobSchedulerComponent, "po-page-job-scheduler", never, {}, {}, ["parametersTemplate"], never, false>;
 }

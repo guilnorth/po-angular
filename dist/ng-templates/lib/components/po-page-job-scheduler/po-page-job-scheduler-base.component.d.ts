@@ -164,13 +164,10 @@ export declare class PoPageJobSchedulerBaseComponent implements OnDestroy {
     parameters: Array<PoDynamicFormField>;
     set value(value: any);
     /**
+     * @description
+     * @todo stepsCustomization
      * Componente customizado que será renderizado na etapa de parametrizações
      */
-    component: any;
-    /**
-     * Propriedades de @Input e @Output do componente customizado em formato chave: valor
-     */
-    dataProps: Object;
     model: PoJobSchedulerInternal;
     private _subscription;
     constructor(poPageJobSchedulerService: PoPageJobSchedulerService);
@@ -180,5 +177,5 @@ export declare class PoPageJobSchedulerBaseComponent implements OnDestroy {
         [key: string]: AbstractControl;
     }): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<PoPageJobSchedulerBaseComponent, never>;
-    static ɵdir: i0.ɵɵDirectiveDeclaration<PoPageJobSchedulerBaseComponent, never, never, { "breadcrumb": "p-breadcrumb"; "serviceApi": "p-service-api"; "title": "p-title"; "parameters": "p-parameters"; "value": "p-value"; "component": "p-component"; "dataProps": "p-data-props"; }, {}, never, never, false>;
+    static ɵdir: i0.ɵɵDirectiveDeclaration<PoPageJobSchedulerBaseComponent, never, never, { "breadcrumb": "p-breadcrumb"; "serviceApi": "p-service-api"; "title": "p-title"; "parameters": "p-parameters"; "value": "p-value"; }, {}, never, never, false>;
 }

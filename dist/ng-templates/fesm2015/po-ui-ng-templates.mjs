@@ -1,5 +1,5 @@
 import * as i0 from '@angular/core';
-import { EventEmitter, Directive, Input, Output, Injectable, Component, ViewChild, NgModule, ChangeDetectionStrategy, ViewContainerRef, ViewEncapsulation } from '@angular/core';
+import { EventEmitter, Directive, Input, Output, Injectable, Component, ViewChild, NgModule, ChangeDetectionStrategy, ViewContainerRef, ViewEncapsulation, ContentChild } from '@angular/core';
 import * as i4 from '@angular/common';
 import { CommonModule } from '@angular/common';
 import * as i5 from '@angular/forms';
@@ -6517,6 +6517,12 @@ class PoPageJobSchedulerBaseComponent {
          *
          */
         this.parameters = [];
+        /**
+         * @description
+         * @todo stepsCustomization
+         * Componente customizado que será renderizado na etapa de parametrizações
+         */
+        // @Input('p-custom-steps') stepsCustomization: PoJobSchedulerCustomSteps; //@todo => change to ng-template value
         this.model = new PoPageJobSchedulerInternal();
         this._subscription = new Subscription();
     }
@@ -6549,7 +6555,7 @@ class PoPageJobSchedulerBaseComponent {
     }
 }
 PoPageJobSchedulerBaseComponent.ɵfac = function PoPageJobSchedulerBaseComponent_Factory(t) { return new (t || PoPageJobSchedulerBaseComponent)(i0.ɵɵdirectiveInject(PoPageJobSchedulerService)); };
-PoPageJobSchedulerBaseComponent.ɵdir = /*@__PURE__*/ i0.ɵɵdefineDirective({ type: PoPageJobSchedulerBaseComponent, inputs: { breadcrumb: ["p-breadcrumb", "breadcrumb"], serviceApi: ["p-service-api", "serviceApi"], title: ["p-title", "title"], parameters: ["p-parameters", "parameters"], value: ["p-value", "value"], component: ["p-component", "component"], dataProps: ["p-data-props", "dataProps"] } });
+PoPageJobSchedulerBaseComponent.ɵdir = /*@__PURE__*/ i0.ɵɵdefineDirective({ type: PoPageJobSchedulerBaseComponent, inputs: { breadcrumb: ["p-breadcrumb", "breadcrumb"], serviceApi: ["p-service-api", "serviceApi"], title: ["p-title", "title"], parameters: ["p-parameters", "parameters"], value: ["p-value", "value"] } });
 (function () {
     (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(PoPageJobSchedulerBaseComponent, [{
             type: Directive
@@ -6568,12 +6574,6 @@ PoPageJobSchedulerBaseComponent.ɵdir = /*@__PURE__*/ i0.ɵɵdefineDirective({ t
             }], value: [{
                 type: Input,
                 args: ['p-value']
-            }], component: [{
-                type: Input,
-                args: ['p-component']
-            }], dataProps: [{
-                type: Input,
-                args: ['p-data-props']
             }] });
 })();
 
@@ -6772,6 +6772,88 @@ const poPageJobSchedulerLiteralsDefault = {
     }
 };
 
+/**
+ * @usedBy PoPageJobScheduler
+ *
+ * @description
+ *
+ * Esta diretiva permite personalizar o conteúdo da etapa de parametrização do componente de PoPageJobScheduler.
+ *
+ * > .....
+ *
+ * Para personalizar o conteúdo de cada item da lista deve-se utilizar a diretiva `p-combo-option-template` com `ng-template`
+ * dentro da *tag* `po-combo`.
+ *
+ * Para obter a referência do item atual utilize `let-option`, com isso você terá acesso aos valores e poderá personalizar sua exibição.
+ *
+ * Esta diretiva compõe-se de dois meios para uso, de forma explícita tal como em *syntax sugar*. Veja a seguir ambos, respectivamente:
+ * @todo documentar
+ * ```
+ * ...
+ * <po-combo
+ *   name="combo"
+ *   [(ngModel)]="combo"
+ *   [p-options]="options">
+ *     <ng-template p-combo-option-template let-option>
+ *       <option-template [option]="option"></option-template>
+ *     </ng-template>
+ * </po-combo>
+ * ...
+ * ```
+ *
+ * ```
+ * ...
+ * <po-combo
+ *   name="combo"
+ *   [(ngModel)]="combo"
+ *   [p-options]="options">
+ *     <div *p-combo-option-template="let option">
+ *       <option-template [option]="option"></option-template>
+ *     </div>
+ * </po-combo>
+ * ...
+ *
+ * ```
+ * Para o caso de personalização de opções com agrupamentos, deve-se seguir a mesma orientação acima. Porém, cabe ao desenvolvedor
+ * a responsabilidade de estilização dos elementos da lista, tais como título e links dos grupos. Abaixo há um exemplo de aplicação:
+ *
+ * ```
+ * ...
+ * <ng-template p-combo-option-template let-option>
+ *   <ng-container *ngIf="option.options; then optionsGroupTitle; else optionsGroupList"></ng-container>
+ *   <ng-template #optionsGroupTitle>
+ *     <p class="po-combo-item-title" [innerHtml]="option.label"></p>
+ *   </ng-template>
+ *   <ng-template #optionsGroupList>
+ *     <div class="po-combo-item">
+ *       <div class="po-row">
+ *         <po-avatar class="po-md-1" p-size="sm"></po-avatar>
+ *         <div class="po-md-11" [innerHtml]="option.label"></div>
+ *       </div>
+ *     </div>
+ *   </ng-template>
+ * </ng-template>
+ * ...
+ *
+ * ```
+ */
+class PoJobSchedulerParametersTemplateDirective {
+    // Necessário manter templateRef para o funcionamento do row template. @todo
+    constructor(templateRef) {
+        this.templateRef = templateRef;
+    }
+}
+PoJobSchedulerParametersTemplateDirective.ɵfac = function PoJobSchedulerParametersTemplateDirective_Factory(t) { return new (t || PoJobSchedulerParametersTemplateDirective)(i0.ɵɵdirectiveInject(i0.TemplateRef)); };
+PoJobSchedulerParametersTemplateDirective.ɵdir = /*@__PURE__*/ i0.ɵɵdefineDirective({ type: PoJobSchedulerParametersTemplateDirective, selectors: [["", "p-job-scheduler-parameters-template", ""]] });
+(function () {
+    (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(PoJobSchedulerParametersTemplateDirective, [{
+            type: Directive,
+            args: [{
+                    selector: '[p-job-scheduler-parameters-template]'
+                }]
+        }], function () { return [{ type: i0.TemplateRef }]; }, null);
+})();
+
 class PoPageJobSchedulerLookupService {
     constructor(poPageJobSchedulerService) {
         this.poPageJobSchedulerService = poPageJobSchedulerService;
@@ -6795,7 +6877,7 @@ PoPageJobSchedulerLookupService.ɵprov = /*@__PURE__*/ i0.ɵɵdefineInjectable({
 const _c0$3 = ["formExecution"];
 const _c1$2 = ["dailyTemplate"];
 const _c2$1 = ["monthlyTemplate"];
-const _c3 = ["weeklyTemplate"];
+const _c3$1 = ["weeklyTemplate"];
 function PoPageJobSchedulerExecutionComponent_ng_container_3_Template(rf, ctx) {
     if (rf & 1) {
         i0.ɵɵelementContainer(0);
@@ -7112,7 +7194,7 @@ PoPageJobSchedulerExecutionComponent.ɵcmp = /*@__PURE__*/ i0.ɵɵdefineComponen
             i0.ɵɵviewQuery(_c0$3, 7);
             i0.ɵɵviewQuery(_c1$2, 7);
             i0.ɵɵviewQuery(_c2$1, 7);
-            i0.ɵɵviewQuery(_c3, 7);
+            i0.ɵɵviewQuery(_c3$1, 7);
         }
         if (rf & 2) {
             let _t;
@@ -7202,79 +7284,6 @@ PoPageJobSchedulerExecutionComponent.ɵcmp = /*@__PURE__*/ i0.ɵɵdefineComponen
             }] });
 })();
 
-class DynamicContentDirective {
-    constructor(viewContainerRef) {
-        this.viewContainerRef = viewContainerRef;
-    }
-}
-DynamicContentDirective.ɵfac = function DynamicContentDirective_Factory(t) { return new (t || DynamicContentDirective)(i0.ɵɵdirectiveInject(i0.ViewContainerRef)); };
-DynamicContentDirective.ɵdir = /*@__PURE__*/ i0.ɵɵdefineDirective({ type: DynamicContentDirective, selectors: [["", "dynamicContent", ""]] });
-(function () {
-    (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(DynamicContentDirective, [{
-            type: Directive,
-            args: [{
-                    selector: '[dynamicContent]'
-                }]
-        }], function () { return [{ type: i0.ViewContainerRef }]; }, null);
-})();
-
-function DynamicContentComponent_ng_template_0_Template(rf, ctx) { }
-class DynamicContentComponent {
-    constructor() { }
-    ngOnInit() {
-        const componentRef = this.createComponent();
-        this.setInstance(componentRef);
-    }
-    createComponent() {
-        const viewContainerRef = this.dynamicContent.viewContainerRef;
-        viewContainerRef.clear();
-        return viewContainerRef.createComponent(this.component);
-    }
-    setInstance(componentRef) {
-        if (typeof this.dataProps === 'object' && this.dataProps !== null) {
-            Object.keys(this.dataProps).forEach(key => {
-                if (componentRef.instance[key] instanceof EventEmitter) {
-                    // subscribe function to EventEmitter
-                    componentRef.instance[key].subscribe(ev => typeof this.dataProps[key] === 'function' && this.dataProps[key](ev));
-                }
-                else {
-                    componentRef.instance[key] = this.dataProps[key];
-                }
-            });
-        }
-    }
-}
-DynamicContentComponent.ɵfac = function DynamicContentComponent_Factory(t) { return new (t || DynamicContentComponent)(); };
-DynamicContentComponent.ɵcmp = /*@__PURE__*/ i0.ɵɵdefineComponent({ type: DynamicContentComponent, selectors: [["dynamic-load-component"]], viewQuery: function DynamicContentComponent_Query(rf, ctx) {
-        if (rf & 1) {
-            i0.ɵɵviewQuery(DynamicContentDirective, 7);
-        }
-        if (rf & 2) {
-            let _t;
-            i0.ɵɵqueryRefresh(_t = i0.ɵɵloadQuery()) && (ctx.dynamicContent = _t.first);
-        }
-    }, inputs: { component: "component", dataProps: "dataProps" }, decls: 1, vars: 0, consts: [["dynamicContent", ""]], template: function DynamicContentComponent_Template(rf, ctx) {
-        if (rf & 1) {
-            i0.ɵɵtemplate(0, DynamicContentComponent_ng_template_0_Template, 0, 0, "ng-template", 0);
-        }
-    }, dependencies: [DynamicContentDirective], encapsulation: 2 });
-(function () {
-    (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(DynamicContentComponent, [{
-            type: Component,
-            args: [{
-                    selector: 'dynamic-load-component',
-                    template: ` <ng-template dynamicContent></ng-template> `
-                }]
-        }], function () { return []; }, { component: [{
-                type: Input
-            }], dataProps: [{
-                type: Input
-            }], dynamicContent: [{
-                type: ViewChild,
-                args: [DynamicContentDirective, { static: true }]
-            }] });
-})();
-
 const _c0$2 = ["parametersForm"];
 function PoPageJobSchedulerParametersComponent_ng_container_0_Template(rf, ctx) {
     if (rf & 1) {
@@ -7283,9 +7292,9 @@ function PoPageJobSchedulerParametersComponent_ng_container_0_Template(rf, ctx) 
 }
 function PoPageJobSchedulerParametersComponent_ng_template_1_Template(rf, ctx) {
     if (rf & 1) {
-        i0.ɵɵelementStart(0, "div", 4);
-        i0.ɵɵelement(1, "span", 5);
-        i0.ɵɵelementStart(2, "span", 6);
+        i0.ɵɵelementStart(0, "div", 5);
+        i0.ɵɵelement(1, "span", 6);
+        i0.ɵɵelementStart(2, "span", 7);
         i0.ɵɵtext(3);
         i0.ɵɵelementEnd()();
     }
@@ -7297,8 +7306,8 @@ function PoPageJobSchedulerParametersComponent_ng_template_1_Template(rf, ctx) {
 }
 function PoPageJobSchedulerParametersComponent_ng_template_3_Template(rf, ctx) {
     if (rf & 1) {
-        i0.ɵɵelementStart(0, "form", null, 7);
-        i0.ɵɵelement(2, "po-dynamic-form", 8);
+        i0.ɵɵelementStart(0, "form", null, 8);
+        i0.ɵɵelement(2, "po-dynamic-form", 9);
         i0.ɵɵelementEnd();
     }
     if (rf & 2) {
@@ -7307,15 +7316,7 @@ function PoPageJobSchedulerParametersComponent_ng_template_3_Template(rf, ctx) {
         i0.ɵɵproperty("p-fields", ctx_r4.parameters)("p-value", ctx_r4.value);
     }
 }
-function PoPageJobSchedulerParametersComponent_ng_template_5_Template(rf, ctx) {
-    if (rf & 1) {
-        i0.ɵɵelement(0, "dynamic-load-component", 9);
-    }
-    if (rf & 2) {
-        const ctx_r6 = i0.ɵɵnextContext();
-        i0.ɵɵproperty("component", ctx_r6.component)("dataProps", ctx_r6.dataProps);
-    }
-}
+function PoPageJobSchedulerParametersComponent_ng_template_5_Template(rf, ctx) { }
 class PoPageJobSchedulerParametersComponent {
     constructor() {
         this.literals = {};
@@ -7341,24 +7342,26 @@ PoPageJobSchedulerParametersComponent.ɵcmp = /*@__PURE__*/ i0.ɵɵdefineCompone
             let _t;
             i0.ɵɵqueryRefresh(_t = i0.ɵɵloadQuery()) && (ctx.form = _t.first);
         }
-    }, inputs: { literals: ["p-literals", "literals"], parameters: ["p-parameters", "parameters"], component: ["p-component", "component"], dataProps: ["p-data-props", "dataProps"], value: ["p-value", "value"] }, outputs: { valueChange: "p-valueChange" }, decls: 7, vars: 3, consts: [[4, "ngIf", "ngIfThen", "ngIfElse"], ["parametersNotFoundTemplate", ""], ["formFieldsTemplate", ""], ["dynamicContent", ""], [1, "po-text-center"], [1, "po-icon", "po-icon-info"], [1, "po-font-text-large"], ["parametersForm", "ngForm"], ["p-group-form", "", 3, "p-fields", "p-value"], [3, "component", "dataProps"]], template: function PoPageJobSchedulerParametersComponent_Template(rf, ctx) {
+    }, inputs: { literals: ["p-literals", "literals"], parameters: ["p-parameters", "parameters"], parametersTemplate: ["p-template", "parametersTemplate"], value: ["p-value", "value"] }, outputs: { valueChange: "p-valueChange" }, decls: 7, vars: 4, consts: [[4, "ngIf", "ngIfThen", "ngIfElse"], ["parametersNotFoundTemplate", ""], ["formFieldsTemplate", ""], [3, "ngTemplateOutlet"], ["dynamicContent", ""], [1, "po-text-center"], [1, "po-icon", "po-icon-info"], [1, "po-font-text-large"], ["parametersForm", "ngForm"], ["p-group-form", "", 3, "p-fields", "p-value"]], template: function PoPageJobSchedulerParametersComponent_Template(rf, ctx) {
         if (rf & 1) {
             i0.ɵɵtemplate(0, PoPageJobSchedulerParametersComponent_ng_container_0_Template, 1, 0, "ng-container", 0);
             i0.ɵɵtemplate(1, PoPageJobSchedulerParametersComponent_ng_template_1_Template, 4, 1, "ng-template", null, 1, i0.ɵɵtemplateRefExtractor);
             i0.ɵɵtemplate(3, PoPageJobSchedulerParametersComponent_ng_template_3_Template, 3, 2, "ng-template", null, 2, i0.ɵɵtemplateRefExtractor);
-            i0.ɵɵtemplate(5, PoPageJobSchedulerParametersComponent_ng_template_5_Template, 1, 2, "ng-template", null, 3, i0.ɵɵtemplateRefExtractor);
+            i0.ɵɵtemplate(5, PoPageJobSchedulerParametersComponent_ng_template_5_Template, 0, 0, "ng-template", 3, 4, i0.ɵɵtemplateRefExtractor);
         }
         if (rf & 2) {
             const _r1 = i0.ɵɵreference(2);
             const _r3 = i0.ɵɵreference(4);
             const _r5 = i0.ɵɵreference(6);
-            i0.ɵɵproperty("ngIf", ctx.parameters && ctx.parameters.length)("ngIfThen", _r3)("ngIfElse", ctx.component && _r5 || _r1);
+            i0.ɵɵproperty("ngIf", ctx.parameters && ctx.parameters.length)("ngIfThen", _r3)("ngIfElse", (ctx.parametersTemplate == null ? null : ctx.parametersTemplate.templateRef) && _r5 || _r1);
+            i0.ɵɵadvance(5);
+            i0.ɵɵproperty("ngTemplateOutlet", ctx.parametersTemplate == null ? null : ctx.parametersTemplate.templateRef);
         }
-    }, dependencies: [i4.NgIf, i5.ɵNgNoValidate, i5.NgControlStatusGroup, i5.NgForm, i2.PoDynamicFormComponent, DynamicContentComponent], encapsulation: 2 });
+    }, dependencies: [i4.NgIf, i4.NgTemplateOutlet, i5.ɵNgNoValidate, i5.NgControlStatusGroup, i5.NgForm, i2.PoDynamicFormComponent], encapsulation: 2 });
 (function () {
     (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(PoPageJobSchedulerParametersComponent, [{
             type: Component,
-            args: [{ selector: 'po-page-job-scheduler-parameters', template: "<ng-container\n  *ngIf=\"\n    parameters && parameters.length;\n    then formFieldsTemplate;\n    else (component && dynamicContent) || parametersNotFoundTemplate\n  \"\n>\n</ng-container>\n\n<ng-template #parametersNotFoundTemplate>\n  <div class=\"po-text-center\">\n    <span class=\"po-icon po-icon-info\"></span>\n    <span class=\"po-font-text-large\">\n      {{ literals.parametersNotFound }}\n    </span>\n  </div>\n</ng-template>\n\n<ng-template #formFieldsTemplate>\n  <form #parametersForm=\"ngForm\">\n    <po-dynamic-form p-group-form [p-fields]=\"parameters\" [p-value]=\"value\"> </po-dynamic-form>\n  </form>\n</ng-template>\n\n<ng-template #dynamicContent>\n  <dynamic-load-component [component]=\"component\" [dataProps]=\"dataProps\"> </dynamic-load-component>\n</ng-template>\n" }]
+            args: [{ selector: 'po-page-job-scheduler-parameters', template: "<ng-container\r\n  *ngIf=\"\r\n    parameters && parameters.length;\r\n    then formFieldsTemplate;\r\n    else (parametersTemplate?.templateRef && dynamicContent) || parametersNotFoundTemplate\r\n  \"\r\n>\r\n</ng-container>\r\n\r\n<ng-template #parametersNotFoundTemplate>\r\n  <div class=\"po-text-center\">\r\n    <span class=\"po-icon po-icon-info\"></span>\r\n    <span class=\"po-font-text-large\">\r\n      {{ literals.parametersNotFound }}\r\n    </span>\r\n  </div>\r\n</ng-template>\r\n\r\n<ng-template #formFieldsTemplate>\r\n  <form #parametersForm=\"ngForm\">\r\n    <po-dynamic-form p-group-form [p-fields]=\"parameters\" [p-value]=\"value\"> </po-dynamic-form>\r\n  </form>\r\n</ng-template>\r\n\r\n<!-- <ng-template #dynamicContent>\r\n  <dynamic-load-component\r\n    [component]=\"customComponent.component\"\r\n    [dataProps]=\"customComponent?.properties\"\r\n    #poParamsCustom\r\n  >\r\n  </dynamic-load-component></ng-template>\r\n -->\r\n\r\n<ng-template #dynamicContent [ngTemplateOutlet]=\"parametersTemplate?.templateRef\"> </ng-template>\r\n" }]
         }], null, { form: [{
                 type: ViewChild,
                 args: ['parametersForm']
@@ -7368,12 +7371,9 @@ PoPageJobSchedulerParametersComponent.ɵcmp = /*@__PURE__*/ i0.ɵɵdefineCompone
             }], parameters: [{
                 type: Input,
                 args: ['p-parameters']
-            }], component: [{
+            }], parametersTemplate: [{
                 type: Input,
-                args: ['p-component']
-            }], dataProps: [{
-                type: Input,
-                args: ['p-data-props']
+                args: ['p-template']
             }], value: [{
                 type: Input,
                 args: ['p-value']
@@ -7601,16 +7601,18 @@ function PoPageJobSchedulerComponent_po_page_job_scheduler_parameters_9_Template
     }
     if (rf & 2) {
         const ctx_r2 = i0.ɵɵnextContext();
-        i0.ɵɵproperty("p-literals", ctx_r2.literals)("p-parameters", ctx_r2.parameters || i0.ɵɵpureFunction0(5, _c2))("p-value", ctx_r2.model.executionParameter)("p-component", ctx_r2.component)("p-data-props", ctx_r2.dataProps);
+        i0.ɵɵproperty("hidden", ctx_r2.step !== 2)("p-literals", ctx_r2.literals)("p-parameters", ctx_r2.parameters || i0.ɵɵpureFunction0(5, _c2))("p-value", ctx_r2.model.executionParameter)("p-template", ctx_r2.parametersTemplate);
     }
 }
+const _c3 = function () { return {}; };
+const _c4 = function (a0) { return [a0]; };
 function PoPageJobSchedulerComponent_po_page_job_scheduler_summary_10_Template(rf, ctx) {
     if (rf & 1) {
         i0.ɵɵelement(0, "po-page-job-scheduler-summary", 11);
     }
     if (rf & 2) {
         const ctx_r3 = i0.ɵɵnextContext();
-        i0.ɵɵproperty("p-no-parameters", ctx_r3.parametersEmpty)("p-literals", ctx_r3.literals)("p-parameters", ctx_r3.parameters)("p-value", ctx_r3.publicValues);
+        i0.ɵɵproperty("p-no-parameters", ctx_r3.parametersEmpty)("p-literals", ctx_r3.literals)("p-parameters", ctx_r3.parameters || i0.ɵɵpureFunction1(5, _c4, i0.ɵɵpureFunction0(4, _c3)))("p-value", ctx_r3.publicValues);
     }
 }
 /**
@@ -7636,6 +7638,7 @@ class PoPageJobSchedulerComponent extends PoPageJobSchedulerBaseComponent {
         this.literals = Object.assign({}, poPageJobSchedulerLiteralsDefault[poLocaleDefault]);
         this.step = 1;
         this.parametersEmpty = true;
+        this.stepParametersInitialized = false;
         this.steps = [];
         this.backPageAction = {
             label: this.literals.back,
@@ -7688,6 +7691,7 @@ class PoPageJobSchedulerComponent extends PoPageJobSchedulerBaseComponent {
         }
     }
     nextStep(stepNumber) {
+        this.stepParametersInitialized = this.stepParametersInitialized || stepNumber === 2;
         if (stepNumber > 1 && this.schedulerExecution.form.invalid) {
             this.markAsDirtyInvalidControls(this.schedulerExecution.form.controls);
             return;
@@ -7712,7 +7716,8 @@ class PoPageJobSchedulerComponent extends PoPageJobSchedulerBaseComponent {
         }
     }
     onChangeProcess(process) {
-        if (process.existAPI && process.processId && this.parametersEmpty && !this.component) {
+        var _a;
+        if (process.existAPI && process.processId && this.parametersEmpty && !((_a = this.parametersTemplate) === null || _a === void 0 ? void 0 : _a.templateRef)) {
             this.getParametersByProcess(process.processId);
             if (!this.isEdit) {
                 this.model.executionParameter = {};
@@ -7736,6 +7741,7 @@ class PoPageJobSchedulerComponent extends PoPageJobSchedulerBaseComponent {
             yield saveOperation.toPromise();
             this.poNotification.success(msgSuccess);
             this.resetJobSchedulerForm();
+            // @todo emitir evento de finalização
         });
     }
     getParametersByProcess(process) {
@@ -7799,7 +7805,15 @@ class PoPageJobSchedulerComponent extends PoPageJobSchedulerBaseComponent {
     }
 }
 PoPageJobSchedulerComponent.ɵfac = function PoPageJobSchedulerComponent_Factory(t) { return new (t || PoPageJobSchedulerComponent)(i0.ɵɵdirectiveInject(PoPageJobSchedulerLookupService), i0.ɵɵdirectiveInject(i1$1.ActivatedRoute), i0.ɵɵdirectiveInject(i2.PoDialogService), i0.ɵɵdirectiveInject(i2.PoNotificationService), i0.ɵɵdirectiveInject(PoPageJobSchedulerService), i0.ɵɵdirectiveInject(i2.PoLanguageService)); };
-PoPageJobSchedulerComponent.ɵcmp = /*@__PURE__*/ i0.ɵɵdefineComponent({ type: PoPageJobSchedulerComponent, selectors: [["po-page-job-scheduler"]], viewQuery: function PoPageJobSchedulerComponent_Query(rf, ctx) {
+PoPageJobSchedulerComponent.ɵcmp = /*@__PURE__*/ i0.ɵɵdefineComponent({ type: PoPageJobSchedulerComponent, selectors: [["po-page-job-scheduler"]], contentQueries: function PoPageJobSchedulerComponent_ContentQueries(rf, ctx, dirIndex) {
+        if (rf & 1) {
+            i0.ɵɵcontentQuery(dirIndex, PoJobSchedulerParametersTemplateDirective, 5);
+        }
+        if (rf & 2) {
+            let _t;
+            i0.ɵɵqueryRefresh(_t = i0.ɵɵloadQuery()) && (ctx.parametersTemplate = _t.first);
+        }
+    }, viewQuery: function PoPageJobSchedulerComponent_Query(rf, ctx) {
         if (rf & 1) {
             i0.ɵɵviewQuery(_c0$1, 7);
             i0.ɵɵviewQuery(_c1$1, 5);
@@ -7809,7 +7823,7 @@ PoPageJobSchedulerComponent.ɵcmp = /*@__PURE__*/ i0.ɵɵdefineComponent({ type:
             i0.ɵɵqueryRefresh(_t = i0.ɵɵloadQuery()) && (ctx.schedulerExecution = _t.first);
             i0.ɵɵqueryRefresh(_t = i0.ɵɵloadQuery()) && (ctx.schedulerParameters = _t.first);
         }
-    }, features: [i0.ɵɵInheritDefinitionFeature], decls: 11, vars: 14, consts: [[3, "p-actions", "p-breadcrumb", "p-title"], [1, "po-row"], ["p-sequential", "true", 1, "po-lg-3", "po-xl-2", 3, "p-orientation", "p-step", "p-steps", "p-change-step"], [1, "po-lg-8", "po-xl-9"], ["formScheduler", "ngForm"], [1, "po-md-12", 3, "p-no-parameters", "p-no-custom-params-component", "hidden", "p-is-edit", "p-literals", "p-value", "p-change-process"], ["schedulerExecution", ""], ["class", "po-md-12", 3, "p-literals", "p-parameters", "p-value", "p-component", "p-data-props", "p-valueChange", 4, "ngIf"], ["class", "po-md-12", 3, "p-no-parameters", "p-literals", "p-parameters", "p-value", 4, "ngIf"], [1, "po-md-12", 3, "p-literals", "p-parameters", "p-value", "p-component", "p-data-props", "p-valueChange"], ["schedulerParameters", ""], [1, "po-md-12", 3, "p-no-parameters", "p-literals", "p-parameters", "p-value"]], template: function PoPageJobSchedulerComponent_Template(rf, ctx) {
+    }, features: [i0.ɵɵInheritDefinitionFeature], decls: 11, vars: 14, consts: [[3, "p-actions", "p-breadcrumb", "p-title"], [1, "po-row"], ["p-sequential", "true", 1, "po-lg-3", "po-xl-2", 3, "p-orientation", "p-step", "p-steps", "p-change-step"], [1, "po-lg-8", "po-xl-9"], ["formScheduler", "ngForm"], [1, "po-md-12", 3, "p-no-parameters", "p-no-custom-params-component", "hidden", "p-is-edit", "p-literals", "p-value", "p-change-process"], ["schedulerExecution", ""], ["class", "po-md-12", 3, "hidden", "p-literals", "p-parameters", "p-value", "p-template", "p-valueChange", 4, "ngIf"], ["class", "po-md-12", 3, "p-no-parameters", "p-literals", "p-parameters", "p-value", 4, "ngIf"], [1, "po-md-12", 3, "hidden", "p-literals", "p-parameters", "p-value", "p-template", "p-valueChange"], ["schedulerParameters", ""], [1, "po-md-12", 3, "p-no-parameters", "p-literals", "p-parameters", "p-value"]], template: function PoPageJobSchedulerComponent_Template(rf, ctx) {
         if (rf & 1) {
             i0.ɵɵelementStart(0, "po-page-default", 0)(1, "div", 1)(2, "po-stepper", 2);
             i0.ɵɵlistener("p-change-step", function PoPageJobSchedulerComponent_Template_po_stepper_p_change_step_2_listener($event) { return ctx.nextStep($event); });
@@ -7818,7 +7832,7 @@ PoPageJobSchedulerComponent.ɵcmp = /*@__PURE__*/ i0.ɵɵdefineComponent({ type:
             i0.ɵɵlistener("p-change-process", function PoPageJobSchedulerComponent_Template_po_page_job_scheduler_execution_p_change_process_7_listener($event) { return ctx.onChangeProcess($event); });
             i0.ɵɵelementEnd();
             i0.ɵɵtemplate(9, PoPageJobSchedulerComponent_po_page_job_scheduler_parameters_9_Template, 2, 6, "po-page-job-scheduler-parameters", 7);
-            i0.ɵɵtemplate(10, PoPageJobSchedulerComponent_po_page_job_scheduler_summary_10_Template, 1, 4, "po-page-job-scheduler-summary", 8);
+            i0.ɵɵtemplate(10, PoPageJobSchedulerComponent_po_page_job_scheduler_summary_10_Template, 1, 7, "po-page-job-scheduler-summary", 8);
             i0.ɵɵelementEnd()()()()();
         }
         if (rf & 2) {
@@ -7826,9 +7840,9 @@ PoPageJobSchedulerComponent.ɵcmp = /*@__PURE__*/ i0.ɵɵdefineComponent({ type:
             i0.ɵɵadvance(2);
             i0.ɵɵproperty("p-orientation", ctx.stepperOrientation)("p-step", ctx.step)("p-steps", ctx.steps);
             i0.ɵɵadvance(5);
-            i0.ɵɵproperty("p-no-parameters", ctx.parametersEmpty)("p-no-custom-params-component", !ctx.component)("hidden", ctx.step !== 1)("p-is-edit", ctx.isEdit)("p-literals", ctx.literals)("p-value", ctx.model);
+            i0.ɵɵproperty("p-no-parameters", ctx.parametersEmpty)("p-no-custom-params-component", !(ctx.parametersTemplate == null ? null : ctx.parametersTemplate.templateRef))("hidden", ctx.step !== 1)("p-is-edit", ctx.isEdit)("p-literals", ctx.literals)("p-value", ctx.model);
             i0.ɵɵadvance(2);
-            i0.ɵɵproperty("ngIf", ctx.step === 2);
+            i0.ɵɵproperty("ngIf", ctx.stepParametersInitialized);
             i0.ɵɵadvance(1);
             i0.ɵɵproperty("ngIf", ctx.step === 3);
         }
@@ -7836,13 +7850,89 @@ PoPageJobSchedulerComponent.ɵcmp = /*@__PURE__*/ i0.ɵɵdefineComponent({ type:
 (function () {
     (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(PoPageJobSchedulerComponent, [{
             type: Component,
-            args: [{ selector: 'po-page-job-scheduler', encapsulation: ViewEncapsulation.None, template: "<po-page-default [p-actions]=\"jobSchedulerActions\" [p-breadcrumb]=\"breadcrumb\" [p-title]=\"title\">\n  <div class=\"po-row\">\n    <po-stepper\n      class=\"po-lg-3 po-xl-2\"\n      p-sequential=\"true\"\n      [p-orientation]=\"stepperOrientation\"\n      [p-step]=\"step\"\n      [p-steps]=\"steps\"\n      (p-change-step)=\"nextStep($event)\"\n    >\n    </po-stepper>\n\n    <po-container class=\"po-lg-8 po-xl-9\">\n      <form #formScheduler=\"ngForm\">\n        <div class=\"po-row\">\n          <po-page-job-scheduler-execution\n            [p-no-parameters]=\"parametersEmpty\"\n            [p-no-custom-params-component]=\"!component\"\n            [hidden]=\"step !== 1\"\n            #schedulerExecution\n            class=\"po-md-12\"\n            [p-is-edit]=\"isEdit\"\n            [p-literals]=\"literals\"\n            [p-value]=\"model\"\n            (p-change-process)=\"onChangeProcess($event)\"\n          >\n          </po-page-job-scheduler-execution>\n\n          <po-page-job-scheduler-parameters\n            *ngIf=\"step === 2\"\n            #schedulerParameters\n            class=\"po-md-12\"\n            [p-literals]=\"literals\"\n            [p-parameters]=\"parameters || []\"\n            [(p-value)]=\"model.executionParameter\"\n            [p-component]=\"component\"\n            [p-data-props]=\"dataProps\"\n          >\n          </po-page-job-scheduler-parameters>\n\n          <po-page-job-scheduler-summary\n            [p-no-parameters]=\"parametersEmpty\"\n            *ngIf=\"step === 3\"\n            class=\"po-md-12\"\n            [p-literals]=\"literals\"\n            [p-parameters]=\"parameters\"\n            [p-value]=\"publicValues\"\n          >\n          </po-page-job-scheduler-summary>\n        </div>\n      </form>\n    </po-container>\n  </div>\n</po-page-default>\n", styles: ["po-container .po-container{overflow-y:unset}\n"] }]
+            args: [{ selector: 'po-page-job-scheduler', encapsulation: ViewEncapsulation.None, template: "<po-page-default [p-actions]=\"jobSchedulerActions\" [p-breadcrumb]=\"breadcrumb\" [p-title]=\"title\">\r\n  <div class=\"po-row\">\r\n    <po-stepper\r\n      class=\"po-lg-3 po-xl-2\"\r\n      p-sequential=\"true\"\r\n      [p-orientation]=\"stepperOrientation\"\r\n      [p-step]=\"step\"\r\n      [p-steps]=\"steps\"\r\n      (p-change-step)=\"nextStep($event)\"\r\n    >\r\n    </po-stepper>\r\n\r\n    <po-container class=\"po-lg-8 po-xl-9\">\r\n      <form #formScheduler=\"ngForm\">\r\n        <div class=\"po-row\">\r\n          <po-page-job-scheduler-execution\r\n            [p-no-parameters]=\"parametersEmpty\"\r\n            [p-no-custom-params-component]=\"!parametersTemplate?.templateRef\"\r\n            [hidden]=\"step !== 1\"\r\n            #schedulerExecution\r\n            class=\"po-md-12\"\r\n            [p-is-edit]=\"isEdit\"\r\n            [p-literals]=\"literals\"\r\n            [p-value]=\"model\"\r\n            (p-change-process)=\"onChangeProcess($event)\"\r\n          >\r\n          </po-page-job-scheduler-execution>\r\n\r\n          <po-page-job-scheduler-parameters\r\n            *ngIf=\"stepParametersInitialized\"\r\n            [hidden]=\"step !== 2\"\r\n            #schedulerParameters\r\n            class=\"po-md-12\"\r\n            [p-literals]=\"literals\"\r\n            [p-parameters]=\"parameters || []\"\r\n            [(p-value)]=\"model.executionParameter\"\r\n            [p-template]=\"parametersTemplate\"\r\n          >\r\n          </po-page-job-scheduler-parameters>\r\n\r\n          <po-page-job-scheduler-summary\r\n            [p-no-parameters]=\"parametersEmpty\"\r\n            *ngIf=\"step === 3\"\r\n            class=\"po-md-12\"\r\n            [p-literals]=\"literals\"\r\n            [p-parameters]=\"parameters || [{}]\"\r\n            [p-value]=\"publicValues\"\r\n          >\r\n          </po-page-job-scheduler-summary>\r\n        </div>\r\n      </form>\r\n    </po-container>\r\n  </div>\r\n</po-page-default>\r\n", styles: ["po-container .po-container{overflow-y:unset}\n"] }]
         }], function () { return [{ type: PoPageJobSchedulerLookupService }, { type: i1$1.ActivatedRoute }, { type: i2.PoDialogService }, { type: i2.PoNotificationService }, { type: PoPageJobSchedulerService }, { type: i2.PoLanguageService }]; }, { schedulerExecution: [{
                 type: ViewChild,
                 args: ['schedulerExecution', { static: true }]
             }], schedulerParameters: [{
                 type: ViewChild,
                 args: ['schedulerParameters']
+            }], parametersTemplate: [{
+                type: ContentChild,
+                args: [PoJobSchedulerParametersTemplateDirective]
+            }] });
+})();
+
+class DynamicContentDirective {
+    constructor(viewContainerRef) {
+        this.viewContainerRef = viewContainerRef;
+    }
+}
+DynamicContentDirective.ɵfac = function DynamicContentDirective_Factory(t) { return new (t || DynamicContentDirective)(i0.ɵɵdirectiveInject(i0.ViewContainerRef)); };
+DynamicContentDirective.ɵdir = /*@__PURE__*/ i0.ɵɵdefineDirective({ type: DynamicContentDirective, selectors: [["", "dynamicContent", ""]] });
+(function () {
+    (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(DynamicContentDirective, [{
+            type: Directive,
+            args: [{
+                    selector: '[dynamicContent]'
+                }]
+        }], function () { return [{ type: i0.ViewContainerRef }]; }, null);
+})();
+
+function DynamicContentComponent_ng_template_0_Template(rf, ctx) { }
+class DynamicContentComponent {
+    constructor() { }
+    ngOnInit() {
+        const componentRef = this.createComponent();
+        this.setInstance(componentRef);
+    }
+    createComponent() {
+        const viewContainerRef = this.dynamicContent.viewContainerRef;
+        viewContainerRef.clear();
+        return viewContainerRef.createComponent(this.component);
+    }
+    setInstance(componentRef) {
+        if (typeof this.dataProps === 'object' && this.dataProps !== null) {
+            Object.keys(this.dataProps).forEach(key => {
+                if (componentRef.instance[key] instanceof EventEmitter) {
+                    // subscribe function to EventEmitter
+                    componentRef.instance[key].subscribe(ev => typeof this.dataProps[key] === 'function' && this.dataProps[key](ev));
+                }
+                else {
+                    componentRef.instance[key] = this.dataProps[key];
+                }
+            });
+        }
+    }
+}
+DynamicContentComponent.ɵfac = function DynamicContentComponent_Factory(t) { return new (t || DynamicContentComponent)(); };
+DynamicContentComponent.ɵcmp = /*@__PURE__*/ i0.ɵɵdefineComponent({ type: DynamicContentComponent, selectors: [["dynamic-load-component"]], viewQuery: function DynamicContentComponent_Query(rf, ctx) {
+        if (rf & 1) {
+            i0.ɵɵviewQuery(DynamicContentDirective, 7);
+        }
+        if (rf & 2) {
+            let _t;
+            i0.ɵɵqueryRefresh(_t = i0.ɵɵloadQuery()) && (ctx.dynamicContent = _t.first);
+        }
+    }, inputs: { component: "component", dataProps: "dataProps" }, decls: 1, vars: 0, consts: [["dynamicContent", ""]], template: function DynamicContentComponent_Template(rf, ctx) {
+        if (rf & 1) {
+            i0.ɵɵtemplate(0, DynamicContentComponent_ng_template_0_Template, 0, 0, "ng-template", 0);
+        }
+    }, dependencies: [DynamicContentDirective], encapsulation: 2 });
+(function () {
+    (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(DynamicContentComponent, [{
+            type: Component,
+            args: [{
+                    selector: 'dynamic-load-component',
+                    template: ` <ng-template dynamicContent></ng-template> `
+                }]
+        }], function () { return []; }, { component: [{
+                type: Input
+            }], dataProps: [{
+                type: Input
+            }], dynamicContent: [{
+                type: ViewChild,
+                args: [DynamicContentDirective, { static: true }]
             }] });
 })();
 
@@ -7872,9 +7962,10 @@ PoPageJobSchedulerModule.ɵinj = /*@__PURE__*/ i0.ɵɵdefineInjector({ providers
                         PoPageJobSchedulerParametersComponent,
                         PoPageJobSchedulerSummaryComponent,
                         DynamicContentComponent,
-                        DynamicContentDirective
+                        DynamicContentDirective,
+                        PoJobSchedulerParametersTemplateDirective
                     ],
-                    exports: [PoPageJobSchedulerComponent],
+                    exports: [PoPageJobSchedulerComponent, PoJobSchedulerParametersTemplateDirective],
                     imports: [
                         CommonModule,
                         FormsModule,
@@ -7899,7 +7990,8 @@ PoPageJobSchedulerModule.ɵinj = /*@__PURE__*/ i0.ɵɵdefineInjector({ providers
             PoPageJobSchedulerParametersComponent,
             PoPageJobSchedulerSummaryComponent,
             DynamicContentComponent,
-            DynamicContentDirective], imports: [CommonModule,
+            DynamicContentDirective,
+            PoJobSchedulerParametersTemplateDirective], imports: [CommonModule,
             FormsModule,
             PoButtonModule,
             PoContainerModule,
@@ -7910,7 +8002,7 @@ PoPageJobSchedulerModule.ɵinj = /*@__PURE__*/ i0.ɵɵdefineInjector({ providers
             PoInfoModule,
             PoPageModule,
             PoStepperModule,
-            PoWidgetModule], exports: [PoPageJobSchedulerComponent] });
+            PoWidgetModule], exports: [PoPageJobSchedulerComponent, PoJobSchedulerParametersTemplateDirective] });
 })();
 
 /**
@@ -9689,5 +9781,5 @@ PoTemplatesModule.ɵinj = /*@__PURE__*/ i0.ɵɵdefineInjector({ imports: [PoComp
  * Generated bundle index. Do not edit.
  */
 
-export { PoComponentsModule, PoModalPasswordRecoveryComponent, PoModalPasswordRecoveryErrorMessageComponent, PoModalPasswordRecoveryModalContent, PoModalPasswordRecoveryModule, PoModalPasswordRecoveryType, PoPageBackgroundComponent, PoPageBackgroundModule, PoPageBlockedUserComponent, PoPageBlockedUserContactsComponent, PoPageBlockedUserModule, PoPageBlockedUserReason, PoPageBlockedUserReasonComponent, PoPageChangePasswordComponent, PoPageChangePasswordModule, PoPageCustomizationModule, PoPageCustomizationService, PoPageDynamicDetailComponent, PoPageDynamicDetailModule, PoPageDynamicEditComponent, PoPageDynamicEditModule, PoPageDynamicModule, PoPageDynamicSearchComponent, PoPageDynamicSearchModule, PoPageDynamicService, PoPageDynamicTableComponent, PoPageDynamicTableModule, PoPageJobSchedulerComponent, PoPageJobSchedulerModule, PoPageLoginAuthenticationType, PoPageLoginComponent, PoPageLoginModule, PoServicesModule, PoTemplatesModule, poModalPasswordRecoveryLiterals, poPageBlockedUserButtonLiterals, poPageBlockedUserLiterals, poPageChangePasswordLiterals, poPageDynamicDetailLiteralsDefault, poPageDynamicEditLiteralsDefault, poPageDynamicLiterals };
+export { PoComponentsModule, PoJobSchedulerParametersTemplateDirective, PoModalPasswordRecoveryComponent, PoModalPasswordRecoveryErrorMessageComponent, PoModalPasswordRecoveryModalContent, PoModalPasswordRecoveryModule, PoModalPasswordRecoveryType, PoPageBackgroundComponent, PoPageBackgroundModule, PoPageBlockedUserComponent, PoPageBlockedUserContactsComponent, PoPageBlockedUserModule, PoPageBlockedUserReason, PoPageBlockedUserReasonComponent, PoPageChangePasswordComponent, PoPageChangePasswordModule, PoPageCustomizationModule, PoPageCustomizationService, PoPageDynamicDetailComponent, PoPageDynamicDetailModule, PoPageDynamicEditComponent, PoPageDynamicEditModule, PoPageDynamicModule, PoPageDynamicSearchComponent, PoPageDynamicSearchModule, PoPageDynamicService, PoPageDynamicTableComponent, PoPageDynamicTableModule, PoPageJobSchedulerComponent, PoPageJobSchedulerModule, PoPageLoginAuthenticationType, PoPageLoginComponent, PoPageLoginModule, PoServicesModule, PoTemplatesModule, poModalPasswordRecoveryLiterals, poPageBlockedUserButtonLiterals, poPageBlockedUserLiterals, poPageChangePasswordLiterals, poPageDynamicDetailLiteralsDefault, poPageDynamicEditLiteralsDefault, poPageDynamicLiterals };
 //# sourceMappingURL=po-ui-ng-templates.mjs.map
