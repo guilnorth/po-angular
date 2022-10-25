@@ -3,13 +3,21 @@ import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-import { PoModule } from '@po-ui/ng-components';
 
-import { AppComponent } from './app.component';
+import { AppComponent, TestComponent } from './app.component';
+import { PoModule } from '../../../ui/src/lib';
+import { PoPageJobSchedulerModule } from '../../../templates/src/lib';
 
 @NgModule({
-  declarations: [AppComponent],
-  imports: [BrowserModule, FormsModule, RouterModule.forRoot([], { relativeLinkResolution: 'legacy' }), PoModule],
+  declarations: [AppComponent, TestComponent],
+  imports: [
+    BrowserModule,
+    FormsModule,
+    RouterModule.forRoot([],
+      { relativeLinkResolution: 'legacy' }),
+    PoModule,
+    PoPageJobSchedulerModule,
+  ],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }

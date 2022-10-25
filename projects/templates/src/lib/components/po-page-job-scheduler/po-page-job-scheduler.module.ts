@@ -23,7 +23,7 @@ import { PoPageJobSchedulerService } from './po-page-job-scheduler.service';
 import { PoPageJobSchedulerSummaryComponent } from './po-page-job-scheduler-summary/po-page-job-scheduler-summary.component';
 import { DynamicContentComponent } from './po-page-job-scheduler-parameters/dynamic-content.component';
 import { DynamicContentDirective } from './po-page-job-scheduler-parameters/dynamic-component.directive';
-import { PoJobSchedulerParametersTemplateDirective } from './po-page-job-scheduler-parameters/po-job-scheduler-parameters-template/po-job-scheduler-parameters-template.directive';
+import { PoJobSchedulerParametersTemplateDirective } from './po-page-job-scheduler-parameters';
 
 @NgModule({
   declarations: [
@@ -35,7 +35,10 @@ import { PoJobSchedulerParametersTemplateDirective } from './po-page-job-schedul
     DynamicContentDirective,
     PoJobSchedulerParametersTemplateDirective
   ],
-  exports: [PoPageJobSchedulerComponent, PoJobSchedulerParametersTemplateDirective],
+  exports: [
+    PoJobSchedulerParametersTemplateDirective,
+    PoPageJobSchedulerComponent
+  ],
   imports: [
     CommonModule,
     FormsModule,
@@ -52,4 +55,4 @@ import { PoJobSchedulerParametersTemplateDirective } from './po-page-job-schedul
   ],
   providers: [PoPageJobSchedulerService, PoPageJobSchedulerLookupService]
 })
-export class PoPageJobSchedulerModule {}
+export class PoPageJobSchedulerModule { }

@@ -21,7 +21,7 @@ import { PoPageJobSchedulerBaseComponent } from './po-page-job-scheduler-base.co
 import { poPageJobSchedulerLiteralsDefault } from './po-page-job-scheduler-literals';
 import { PoPageJobSchedulerLookupService } from './po-page-job-scheduler-lookup.service';
 import { PoPageJobSchedulerService } from './po-page-job-scheduler.service';
-import { PoJobSchedulerParametersTemplateDirective } from './po-page-job-scheduler-parameters/po-job-scheduler-parameters-template/po-job-scheduler-parameters-template.directive';
+import { PoJobSchedulerParametersTemplateDirective } from './po-page-job-scheduler-parameters';
 
 /**
  * @docsExtends PoPageJobSchedulerBaseComponent
@@ -49,8 +49,7 @@ import { PoJobSchedulerParametersTemplateDirective } from './po-page-job-schedul
 export class PoPageJobSchedulerComponent extends PoPageJobSchedulerBaseComponent implements OnInit {
   @ViewChild('schedulerExecution', { static: true }) schedulerExecution: { form: NgForm };
   @ViewChild('schedulerParameters') schedulerParameters: { form: NgForm };
-  @ContentChild(PoJobSchedulerParametersTemplateDirective)
-  parametersTemplate: PoJobSchedulerParametersTemplateDirective;
+  @ContentChild(PoJobSchedulerParametersTemplateDirective, { static: true }) parametersTemplate: PoJobSchedulerParametersTemplateDirective;
 
   isEdit = false;
   literals = {

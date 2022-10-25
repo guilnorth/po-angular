@@ -31,4 +31,8 @@
   </dynamic-load-component></ng-template>
  -->
 
-<ng-template #dynamicContent [ngTemplateOutlet]="parametersTemplate?.templateRef"> </ng-template>
+<!-- <ng-template #dynamicContent [ngTemplateOutlet]="parametersTemplate?.templateRef"> </ng-template> -->
+
+<ng-template #dynamicContent>
+  <ng-container *ngTemplateOutlet="parametersTemplate?.templateRef"> </ng-container>
+</ng-template>

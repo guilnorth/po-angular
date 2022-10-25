@@ -6662,19 +6662,15 @@ PoJobSchedulerParametersTemplateDirective.ɵdir = /*@__PURE__*/ i0.ɵɵdefineDir
             }]
     }], function () { return [{ type: i0.TemplateRef }]; }, null); })();
 
-class PoJobSchedulerParametersTemplateModule {
-}
-PoJobSchedulerParametersTemplateModule.ɵfac = function PoJobSchedulerParametersTemplateModule_Factory(t) { return new (t || PoJobSchedulerParametersTemplateModule)(); };
-PoJobSchedulerParametersTemplateModule.ɵmod = /*@__PURE__*/ i0.ɵɵdefineNgModule({ type: PoJobSchedulerParametersTemplateModule });
-PoJobSchedulerParametersTemplateModule.ɵinj = /*@__PURE__*/ i0.ɵɵdefineInjector({});
-(function () { (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(PoJobSchedulerParametersTemplateModule, [{
-        type: NgModule,
-        args: [{
-                declarations: [PoJobSchedulerParametersTemplateDirective],
-                exports: [PoJobSchedulerParametersTemplateDirective],
-            }]
-    }], null, null); })();
-(function () { (typeof ngJitMode === "undefined" || ngJitMode) && i0.ɵɵsetNgModuleScope(PoJobSchedulerParametersTemplateModule, { declarations: [PoJobSchedulerParametersTemplateDirective], exports: [PoJobSchedulerParametersTemplateDirective] }); })();
+/* import { NgModule } from '@angular/core';
+import { PoJobSchedulerParametersTemplateDirective } from './po-job-scheduler-parameters-template.directive';
+
+@NgModule({
+  declarations: [PoJobSchedulerParametersTemplateDirective],
+  exports: [PoJobSchedulerParametersTemplateDirective],
+})
+export class PoJobSchedulerParametersTemplateModule { }
+ */
 
 class PoPageJobSchedulerLookupService {
     constructor(poPageJobSchedulerService) {
@@ -7548,7 +7544,7 @@ class PoPageJobSchedulerComponent extends PoPageJobSchedulerBaseComponent {
 }
 PoPageJobSchedulerComponent.ɵfac = function PoPageJobSchedulerComponent_Factory(t) { return new (t || PoPageJobSchedulerComponent)(i0.ɵɵdirectiveInject(PoPageJobSchedulerLookupService), i0.ɵɵdirectiveInject(i1$1.ActivatedRoute), i0.ɵɵdirectiveInject(i2.PoDialogService), i0.ɵɵdirectiveInject(i2.PoNotificationService), i0.ɵɵdirectiveInject(PoPageJobSchedulerService), i0.ɵɵdirectiveInject(i2.PoLanguageService)); };
 PoPageJobSchedulerComponent.ɵcmp = /*@__PURE__*/ i0.ɵɵdefineComponent({ type: PoPageJobSchedulerComponent, selectors: [["po-page-job-scheduler"]], contentQueries: function PoPageJobSchedulerComponent_ContentQueries(rf, ctx, dirIndex) { if (rf & 1) {
-        i0.ɵɵcontentQuery(dirIndex, PoJobSchedulerParametersTemplateDirective, 5);
+        i0.ɵɵcontentQuery(dirIndex, PoJobSchedulerParametersTemplateDirective, 7);
     } if (rf & 2) {
         let _t;
         i0.ɵɵqueryRefresh(_t = i0.ɵɵloadQuery()) && (ctx.parametersTemplate = _t.first);
@@ -7591,7 +7587,7 @@ PoPageJobSchedulerComponent.ɵcmp = /*@__PURE__*/ i0.ɵɵdefineComponent({ type:
             args: ['schedulerParameters']
         }], parametersTemplate: [{
             type: ContentChild,
-            args: [PoJobSchedulerParametersTemplateDirective]
+            args: [PoJobSchedulerParametersTemplateDirective, { static: true }]
         }] }); })();
 
 class DynamicContentDirective {
@@ -7673,8 +7669,7 @@ PoPageJobSchedulerModule.ɵinj = /*@__PURE__*/ i0.ɵɵdefineInjector({ providers
         PoInfoModule,
         PoPageModule,
         PoStepperModule,
-        PoWidgetModule,
-        PoJobSchedulerParametersTemplateModule] });
+        PoWidgetModule] });
 (function () { (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(PoPageJobSchedulerModule, [{
         type: NgModule,
         args: [{
@@ -7685,8 +7680,12 @@ PoPageJobSchedulerModule.ɵinj = /*@__PURE__*/ i0.ɵɵdefineInjector({ providers
                     PoPageJobSchedulerSummaryComponent,
                     DynamicContentComponent,
                     DynamicContentDirective,
+                    PoJobSchedulerParametersTemplateDirective
                 ],
-                exports: [PoPageJobSchedulerComponent],
+                exports: [
+                    PoJobSchedulerParametersTemplateDirective,
+                    PoPageJobSchedulerComponent
+                ],
                 imports: [
                     CommonModule,
                     FormsModule,
@@ -7699,8 +7698,7 @@ PoPageJobSchedulerModule.ɵinj = /*@__PURE__*/ i0.ɵɵdefineInjector({ providers
                     PoInfoModule,
                     PoPageModule,
                     PoStepperModule,
-                    PoWidgetModule,
-                    PoJobSchedulerParametersTemplateModule
+                    PoWidgetModule
                 ],
                 providers: [PoPageJobSchedulerService, PoPageJobSchedulerLookupService]
             }]
@@ -7710,7 +7708,8 @@ PoPageJobSchedulerModule.ɵinj = /*@__PURE__*/ i0.ɵɵdefineInjector({ providers
         PoPageJobSchedulerParametersComponent,
         PoPageJobSchedulerSummaryComponent,
         DynamicContentComponent,
-        DynamicContentDirective], imports: [CommonModule,
+        DynamicContentDirective,
+        PoJobSchedulerParametersTemplateDirective], imports: [CommonModule,
         FormsModule,
         PoButtonModule,
         PoContainerModule,
@@ -7721,8 +7720,8 @@ PoPageJobSchedulerModule.ɵinj = /*@__PURE__*/ i0.ɵɵdefineInjector({ providers
         PoInfoModule,
         PoPageModule,
         PoStepperModule,
-        PoWidgetModule,
-        PoJobSchedulerParametersTemplateModule], exports: [PoPageJobSchedulerComponent] }); })();
+        PoWidgetModule], exports: [PoJobSchedulerParametersTemplateDirective,
+        PoPageJobSchedulerComponent] }); })();
 
 /**
  * @usedBy PoPageLoginComponent
@@ -9339,8 +9338,7 @@ PoComponentsModule.ɵinj = /*@__PURE__*/ i0.ɵɵdefineInjector({ imports: [PoMod
         PoPageDynamicSearchModule,
         PoPageDynamicTableModule,
         PoPageJobSchedulerModule,
-        PoPageLoginModule,
-        PoJobSchedulerParametersTemplateModule] });
+        PoPageLoginModule] });
 (function () { (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(PoComponentsModule, [{
         type: NgModule,
         args: [{
@@ -9366,8 +9364,7 @@ PoComponentsModule.ɵinj = /*@__PURE__*/ i0.ɵɵdefineInjector({ imports: [PoMod
                     PoPageDynamicSearchModule,
                     PoPageDynamicTableModule,
                     PoPageJobSchedulerModule,
-                    PoPageLoginModule,
-                    PoJobSchedulerParametersTemplateModule
+                    PoPageLoginModule
                 ]
             }]
     }], null, null); })();
@@ -9389,8 +9386,7 @@ PoComponentsModule.ɵinj = /*@__PURE__*/ i0.ɵɵdefineInjector({ imports: [PoMod
         PoPageDynamicSearchModule,
         PoPageDynamicTableModule,
         PoPageJobSchedulerModule,
-        PoPageLoginModule,
-        PoJobSchedulerParametersTemplateModule] }); })();
+        PoPageLoginModule] }); })();
 
 class PoServicesModule {
 }
@@ -9410,19 +9406,19 @@ class PoTemplatesModule {
 }
 PoTemplatesModule.ɵfac = function PoTemplatesModule_Factory(t) { return new (t || PoTemplatesModule)(); };
 PoTemplatesModule.ɵmod = /*@__PURE__*/ i0.ɵɵdefineNgModule({ type: PoTemplatesModule });
-PoTemplatesModule.ɵinj = /*@__PURE__*/ i0.ɵɵdefineInjector({ imports: [PoComponentsModule, PoServicesModule, PoJobSchedulerParametersTemplateModule, PoComponentsModule, PoServicesModule, PoJobSchedulerParametersTemplateModule] });
+PoTemplatesModule.ɵinj = /*@__PURE__*/ i0.ɵɵdefineInjector({ imports: [PoComponentsModule, PoServicesModule, PoComponentsModule, PoServicesModule] });
 (function () { (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(PoTemplatesModule, [{
         type: NgModule,
         args: [{
-                imports: [PoComponentsModule, PoServicesModule, PoJobSchedulerParametersTemplateModule],
-                exports: [PoComponentsModule, PoServicesModule, PoJobSchedulerParametersTemplateModule]
+                imports: [PoComponentsModule, PoServicesModule],
+                exports: [PoComponentsModule, PoServicesModule]
             }]
     }], null, null); })();
-(function () { (typeof ngJitMode === "undefined" || ngJitMode) && i0.ɵɵsetNgModuleScope(PoTemplatesModule, { imports: [PoComponentsModule, PoServicesModule, PoJobSchedulerParametersTemplateModule], exports: [PoComponentsModule, PoServicesModule, PoJobSchedulerParametersTemplateModule] }); })();
+(function () { (typeof ngJitMode === "undefined" || ngJitMode) && i0.ɵɵsetNgModuleScope(PoTemplatesModule, { imports: [PoComponentsModule, PoServicesModule], exports: [PoComponentsModule, PoServicesModule] }); })();
 
 /**
  * Generated bundle index. Do not edit.
  */
 
-export { PoComponentsModule, PoJobSchedulerParametersTemplateDirective, PoJobSchedulerParametersTemplateModule, PoModalPasswordRecoveryComponent, PoModalPasswordRecoveryErrorMessageComponent, PoModalPasswordRecoveryModalContent, PoModalPasswordRecoveryModule, PoModalPasswordRecoveryType, PoPageBackgroundComponent, PoPageBackgroundModule, PoPageBlockedUserComponent, PoPageBlockedUserContactsComponent, PoPageBlockedUserModule, PoPageBlockedUserReason, PoPageBlockedUserReasonComponent, PoPageChangePasswordComponent, PoPageChangePasswordModule, PoPageCustomizationModule, PoPageCustomizationService, PoPageDynamicDetailComponent, PoPageDynamicDetailModule, PoPageDynamicEditComponent, PoPageDynamicEditModule, PoPageDynamicModule, PoPageDynamicSearchComponent, PoPageDynamicSearchModule, PoPageDynamicService, PoPageDynamicTableComponent, PoPageDynamicTableModule, PoPageJobSchedulerComponent, PoPageJobSchedulerModule, PoPageLoginAuthenticationType, PoPageLoginComponent, PoPageLoginModule, PoServicesModule, PoTemplatesModule, poModalPasswordRecoveryLiterals, poPageBlockedUserButtonLiterals, poPageBlockedUserLiterals, poPageChangePasswordLiterals, poPageDynamicDetailLiteralsDefault, poPageDynamicEditLiteralsDefault, poPageDynamicLiterals };
+export { PoComponentsModule, PoJobSchedulerParametersTemplateDirective, PoModalPasswordRecoveryComponent, PoModalPasswordRecoveryErrorMessageComponent, PoModalPasswordRecoveryModalContent, PoModalPasswordRecoveryModule, PoModalPasswordRecoveryType, PoPageBackgroundComponent, PoPageBackgroundModule, PoPageBlockedUserComponent, PoPageBlockedUserContactsComponent, PoPageBlockedUserModule, PoPageBlockedUserReason, PoPageBlockedUserReasonComponent, PoPageChangePasswordComponent, PoPageChangePasswordModule, PoPageCustomizationModule, PoPageCustomizationService, PoPageDynamicDetailComponent, PoPageDynamicDetailModule, PoPageDynamicEditComponent, PoPageDynamicEditModule, PoPageDynamicModule, PoPageDynamicSearchComponent, PoPageDynamicSearchModule, PoPageDynamicService, PoPageDynamicTableComponent, PoPageDynamicTableModule, PoPageJobSchedulerComponent, PoPageJobSchedulerModule, PoPageLoginAuthenticationType, PoPageLoginComponent, PoPageLoginModule, PoServicesModule, PoTemplatesModule, poModalPasswordRecoveryLiterals, poPageBlockedUserButtonLiterals, poPageBlockedUserLiterals, poPageChangePasswordLiterals, poPageDynamicDetailLiteralsDefault, poPageDynamicEditLiteralsDefault, poPageDynamicLiterals };
 //# sourceMappingURL=po-ui-ng-templates.mjs.map
