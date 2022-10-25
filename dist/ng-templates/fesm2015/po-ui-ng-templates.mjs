@@ -7634,6 +7634,7 @@ class PoPageJobSchedulerComponent extends PoPageJobSchedulerBaseComponent {
         return window.innerWidth > 481 && window.innerWidth < 960 ? 'horizontal' : 'vertical';
     }
     ngOnInit() {
+        console.log('V1', this.parametersTemplate);
         const paramId = this.activatedRoute.snapshot.params['id'];
         this.isEdit = !!paramId;
         this.poPageJobSchedulerService.configServiceApi({ endpoint: this.serviceApi });

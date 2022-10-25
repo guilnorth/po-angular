@@ -12,6 +12,7 @@
     "build"
   ],
   "scripts": {
+    "prepare": "npm run build",
     "ng": "ng",
     "tsc": "tsc",
     "start": "ng serve",
