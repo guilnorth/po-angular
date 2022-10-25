@@ -1,17 +1,18 @@
 <po-button p-label="Change" (p-click)="setComponent()"> </po-button>
 {{selected?.parameters?.properties | json}}
 
-<po-page-job-scheduler
- 
+<!-- <po-page-job-scheduler
+  *ngIf="selected?.parameters?.component"
   p-service-api="https://po-sample-api.herokuapp.com/v1/scheduler"
   p-title="Background Process Scheduler with Dynamic Content"
   [p-breadcrumb]="breadcrumb"
   [p-parameters]="pParameter"
 >
-  <ng-template p-job-scheduler-parameters-template >
-    <dynamic-load-component  
+  <ng-template p-job-scheduler-parameters-template>
+    <dynamic-load-component 
     [component]="selected?.parameters?.component" 
     [dataProps]="selected?.parameters?.properties">
     </dynamic-load-component>
   </ng-template>
 </po-page-job-scheduler>
+ -->

@@ -122,6 +122,7 @@ export class PoPageJobSchedulerComponent extends PoPageJobSchedulerBaseComponent
   }
 
   ngOnInit() {
+    console.log('V1', this.parametersTemplate)
     const paramId = this.activatedRoute.snapshot.params['id'];
 
     this.isEdit = !!paramId;

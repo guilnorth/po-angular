@@ -21,8 +21,8 @@ import { PoPageJobSchedulerLookupService } from './po-page-job-scheduler-lookup.
 import { PoPageJobSchedulerParametersComponent } from './po-page-job-scheduler-parameters/po-page-job-scheduler-parameters.component';
 import { PoPageJobSchedulerService } from './po-page-job-scheduler.service';
 import { PoPageJobSchedulerSummaryComponent } from './po-page-job-scheduler-summary/po-page-job-scheduler-summary.component';
-import { DynamicContentComponent } from './po-page-job-scheduler-parameters/dynamic-content.component';
-import { DynamicContentDirective } from './po-page-job-scheduler-parameters/dynamic-component.directive';
+//import { DynamicContentComponent } from './po-page-job-scheduler-parameters/dynamic-content.component';
+//import { DynamicContentDirective } from './po-page-job-scheduler-parameters/dynamic-component.directive';
 import { PoJobSchedulerParametersTemplateDirective } from './po-page-job-scheduler-parameters';
 
 @NgModule({
@@ -31,13 +31,15 @@ import { PoJobSchedulerParametersTemplateDirective } from './po-page-job-schedul
     PoPageJobSchedulerExecutionComponent,
     PoPageJobSchedulerParametersComponent,
     PoPageJobSchedulerSummaryComponent,
-    DynamicContentComponent,
-    DynamicContentDirective,
-    PoJobSchedulerParametersTemplateDirective
+   /*  DynamicContentComponent,
+    DynamicContentDirective, */
+    PoJobSchedulerParametersTemplateDirective,
   ],
   exports: [
     PoJobSchedulerParametersTemplateDirective,
-    PoPageJobSchedulerComponent
+    PoPageJobSchedulerComponent,
+    /* DynamicContentComponent,
+    DynamicContentDirective, */
   ],
   imports: [
     CommonModule,

@@ -8,10 +8,14 @@ import { PoBreadcrumb, PoDynamicFormComponent } from '../../../ui/src/lib';
   templateUrl: './app.component.html'
 })
 export class AppComponent implements OnInit{
+  
+  constructor(){
+    this.selected = this.customSteps[0]
+  }
   ngOnInit(): void {
    //this.selected = undefined
-   setTimeout(()=>{ this.selected = this.customSteps[0] },0)
-   //this.selected = this.customSteps[0]
+   //setTimeout(()=>{ this.selected = this.customSteps[0] },0)
+  
    //this.componentDirect = this.selected.parameters.component
   }
 
