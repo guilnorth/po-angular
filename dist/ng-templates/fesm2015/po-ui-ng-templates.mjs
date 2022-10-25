@@ -9796,17 +9796,17 @@ class PoTemplatesModule {
 }
 PoTemplatesModule.ɵfac = function PoTemplatesModule_Factory(t) { return new (t || PoTemplatesModule)(); };
 PoTemplatesModule.ɵmod = /*@__PURE__*/ i0.ɵɵdefineNgModule({ type: PoTemplatesModule });
-PoTemplatesModule.ɵinj = /*@__PURE__*/ i0.ɵɵdefineInjector({ imports: [PoComponentsModule, PoServicesModule, PoComponentsModule, PoServicesModule] });
+PoTemplatesModule.ɵinj = /*@__PURE__*/ i0.ɵɵdefineInjector({ imports: [PoComponentsModule, PoServicesModule, PoJobSchedulerParametersTemplateModule, PoComponentsModule, PoServicesModule, PoJobSchedulerParametersTemplateModule] });
 (function () {
     (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(PoTemplatesModule, [{
             type: NgModule,
             args: [{
-                    imports: [PoComponentsModule, PoServicesModule],
-                    exports: [PoComponentsModule, PoServicesModule]
+                    imports: [PoComponentsModule, PoServicesModule, PoJobSchedulerParametersTemplateModule],
+                    exports: [PoComponentsModule, PoServicesModule, PoJobSchedulerParametersTemplateModule]
                 }]
         }], null, null);
 })();
-(function () { (typeof ngJitMode === "undefined" || ngJitMode) && i0.ɵɵsetNgModuleScope(PoTemplatesModule, { imports: [PoComponentsModule, PoServicesModule], exports: [PoComponentsModule, PoServicesModule] }); })();
+(function () { (typeof ngJitMode === "undefined" || ngJitMode) && i0.ɵɵsetNgModuleScope(PoTemplatesModule, { imports: [PoComponentsModule, PoServicesModule, PoJobSchedulerParametersTemplateModule], exports: [PoComponentsModule, PoServicesModule, PoJobSchedulerParametersTemplateModule] }); })();
 
 /**
  * Generated bundle index. Do not edit.
