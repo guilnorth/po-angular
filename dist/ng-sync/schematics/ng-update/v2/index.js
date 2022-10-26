@@ -9,7 +9,7 @@ const package_config_1 = require("@po-ui/ng-schematics/package-config");
 const changes_1 = require("./changes");
 function updateToV2() {
     return (0, schematics_1.chain)([
-        updatePackageJson('14.5.0', changes_1.dependeciesChanges),
+        updatePackageJson('14.5.1', changes_1.dependeciesChanges),
         (0, replace_1.replaceInFile)('tslint.json', changes_1.tsLintChanges),
         createUpgradeRule(),
         postUpdate()

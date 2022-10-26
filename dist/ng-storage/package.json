@@ -1,6 +1,6 @@
 {
   "name": "@po-ui/ng-storage",
-  "version": "14.5.0",
+  "version": "14.5.1",
   "tag": "next",
   "description": "PO UI - Storage",
   "author": "PO UI",
@@ -12,7 +12,7 @@
   },
   "schematics": "./schematics/collection.json",
   "dependencies": {
-    "@po-ui/ng-schematics": "14.5.0",
+    "@po-ui/ng-schematics": "14.5.1",
     "custom-idle-queue": "2.1.2",
     "localforage": "1.9.0",
     "lokijs": "1.5.12",

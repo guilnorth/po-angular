@@ -18,7 +18,7 @@ function default_1(options) {
 exports.default = default_1;
 function addPoPackageAndInstall() {
     return (tree, context) => {
-        (0, package_config_1.addPackageToPackageJson)(tree, '@po-ui/ng-components', '14.5.0');
+        (0, package_config_1.addPackageToPackageJson)(tree, '@po-ui/ng-components', '14.5.1');
         // install packages
         context.addTask(new tasks_1.NodePackageInstallTask());
     };

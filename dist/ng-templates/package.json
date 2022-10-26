@@ -1,6 +1,6 @@
 {
   "name": "@po-ui/ng-templates",
-  "version": "14.5.0",
+  "version": "14.5.1",
   "tag": "next",
   "description": "PO UI - Templates",
   "author": "PO UI",
@@ -12,8 +12,8 @@
   },
   "schematics": "./schematics/collection.json",
   "dependencies": {
-    "@po-ui/ng-components": "14.5.0",
-    "@po-ui/ng-schematics": "14.5.0",
+    "@po-ui/ng-components": "14.5.1",
+    "@po-ui/ng-schematics": "14.5.1",
     "tslib": "^2.3.0"
   },
   "peerDependencies": {
@@ -25,7 +25,7 @@
     "@angular/platform-browser": "^14.0.2",
     "@angular/platform-browser-dynamic": "^14.0.2",
     "@angular/router": "^14.0.2",
-    "@po-ui/ng-components": "14.5.0",
+    "@po-ui/ng-components": "14.5.1",
     "rxjs": "~7.5.5",
     "zone.js": "~0.11.4"
   },

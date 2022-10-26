@@ -1,6 +1,6 @@
 {
   "name": "@po-ui/ng-code-editor",
-  "version": "14.5.0",
+  "version": "14.5.1",
   "tag": "next",
   "description": "PO UI - Code Editor",
   "author": "PO UI",
@@ -12,8 +12,8 @@
   },
   "schematics": "./schematics/collection.json",
   "dependencies": {
-    "@po-ui/ng-components": "14.5.0",
-    "@po-ui/ng-schematics": "14.5.0",
+    "@po-ui/ng-components": "14.5.1",
+    "@po-ui/ng-schematics": "14.5.1",
     "monaco-editor": "0.24.0",
     "core-js": "^3.13.0",
     "intl": "^1.2.5",
@@ -23,7 +23,7 @@
     "@angular/common": "^14.0.2",
     "@angular/core": "^14.0.2",
     "@angular/forms": "^14.0.2",
-    "@po-ui/ng-components": "14.5.0",
+    "@po-ui/ng-components": "14.5.1",
     "monaco-editor": "0.24.0",
     "zone.js": "~0.11.4"
   },
