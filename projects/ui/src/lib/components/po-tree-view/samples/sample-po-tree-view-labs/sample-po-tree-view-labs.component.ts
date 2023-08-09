@@ -14,6 +14,7 @@ export class SamplePoTreeViewLabsComponent implements OnInit {
   parentList: Array<PoSelectOption>;
   selectable: boolean;
   treeViewItem: PoTreeViewItem;
+  maxLevel: number = 4;
 
   readonly itemPropertiesOptions: Array<PoCheckboxGroupOption> = [
     { value: 'selected', label: 'Selected' },
