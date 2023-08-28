@@ -67,6 +67,10 @@ export class PoTreeViewBaseComponent {
 
   private _items: Array<PoTreeViewItem> = [];
   private _selectable: boolean = false;
+  private _singleSelect: boolean = false;
+
+  // armazena o value do item selecionado
+  selectedValue: string | number;
 
   /**
    * Lista de itens do tipo `PoTreeViewItem` que será renderizada pelo componente.
@@ -98,6 +102,23 @@ export class PoTreeViewBaseComponent {
     return this._selectable;
   }
 
+  /**
+   * @optional
+   *
+   * @description
+   *
+   * Habilita a seleção para item único atráves de po-radio.
+   *
+   * @default false
+   */
+  @Input('p-single-select') set singleSelect(value: boolean) {
+    this._singleSelect = convertToBoolean(value);
+  }
+
+  get singleSelect() {
+    return this._singleSelect;
+  }
+
   private _maxLevel = poTreeViewMaxLevel;
   /**
    * @optional
@@ -126,6 +147,8 @@ export class PoTreeViewBaseComponent {
 
   protected emitSelected(treeViewItem: PoTreeViewItem) {
     const event = treeViewItem.selected ? 'selected' : 'unselected';
+
+    this.selectedValue = treeViewItem.value;
 
     this.updateItemsOnSelect(treeViewItem);
 
@@ -217,12 +240,16 @@ export class PoTreeViewBaseComponent {
 
       if (Array.isArray(subItems)) {
         // caso um item pai iniciar selecionado, deve selecionar os filhos.
-        if (currentItem.selected) {
+        if (currentItem.selected && !this.singleSelect) {
           this.selectAllItems(subItems, currentItem.selected);
         }
 
         this.getItemsByMaxLevel(subItems, ++level, currentItem);
         --level;
+      }
+
+      if (item.selected) {
+        this.selectedValue = currentItem.value;
       }
 
       this.addItem(newItems, currentItem, parentItem, true);
@@ -246,7 +273,7 @@ export class PoTreeViewBaseComponent {
   }
 
   private updateItemsOnSelect(selectedItem: PoTreeViewItem) {
-    if (selectedItem.subItems) {
+    if (selectedItem.subItems && !this.singleSelect) {
       this.selectAllItems(selectedItem.subItems, selectedItem.selected);
     }
 

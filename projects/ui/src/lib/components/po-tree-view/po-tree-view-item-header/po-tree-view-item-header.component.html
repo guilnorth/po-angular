@@ -7,13 +7,19 @@
     </span>
   </button>
 
-  <ng-container *ngIf="selectable; then checkboxTemplate; else labelTemplate"></ng-container>
+  <ng-container
+    *ngIf="selectable && item.isSelectable !== false; then selectionTemplate; else labelTemplate"
+  ></ng-container>
 </div>
 
 <ng-template #labelTemplate>
   <span class="po-tree-view-item-header-label" [class.po-tree-view-item-header-padding]="!hasSubItems">
     {{ item.label }}
   </span>
+</ng-template>
+
+<ng-template #selectionTemplate>
+  <ng-container *ngIf="singleSelect; then radioTemplate; else checkboxTemplate"></ng-container>
 </ng-template>
 
 <ng-template #checkboxTemplate>
@@ -25,4 +31,19 @@
     (p-change)="selected.emit(item)"
   >
   </po-checkbox>
+</ng-template>
+
+<ng-template #radioTemplate>
+  <po-radio
+    class="po-tree-view-item-header-checkbox"
+    [class.po-tree-view-item-header-padding]="!hasSubItems"
+    #inputRadio
+    [name]="idRadio"
+    [(ngModel)]="item.selected"
+    [p-label]="item.label"
+    [p-value]="item.value"
+    [p-checked]="item.value === selectedValue"
+    (p-change-selected)="selected.emit(item)"
+  >
+  </po-radio>
 </ng-template>
