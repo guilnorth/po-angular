@@ -1414,6 +1414,19 @@ describe('PoTableBaseComponent:', () => {
         expect(fakeSubscription.unsubscribe).not.toHaveBeenCalled();
       });
     });
+
+    it('getFilteredColumns: should filter and map columns correctly', () => {
+      component.columns = [
+        { label: 'Currency', visible: true },
+        { label: 'Números', property: 'numberData', visible: true },
+        { label: 'Datas', property: 'dateData', visible: true },
+        { label: 'Textos', property: 'textData', visible: false }
+      ];
+
+      component['getFilteredColumns']();
+
+      expect(component.filteredColumns).toEqual(['Currency', 'numberData', 'dateData']);
+    });
   });
 
   describe('Properties:', () => {
@@ -1639,27 +1652,39 @@ describe('PoTableBaseComponent:', () => {
     });
 
     it('p-hide-columns-manager: should update property `p-hide-columns-manager` with valid values.', () => {
-      expectPropertiesValues(component, 'hideColumnsManager', booleanValidTrueValues, true);
+      component.hideColumnsManager = utilsFunctions.convertToBoolean(1);
+
+      expect(component.hideColumnsManager).toBe(true);
     });
 
     it('p-hide-columns-manager: should update property `p-hide-columns-manager` with invalid values.', () => {
-      expectPropertiesValues(component, 'hideColumnsManager', booleanInvalidValues, false);
+      component.hideColumnsManager = utilsFunctions.convertToBoolean(3);
+
+      expect(component.hideColumnsManager).toBe(false);
     });
 
     it('p-loading-show-more: should update property `p-loading-show-more` with valid values.', () => {
-      expectPropertiesValues(component, 'loadingShowMore', booleanValidTrueValues, true);
+      component.loadingShowMore = utilsFunctions.convertToBoolean(1);
+
+      expect(component.loadingShowMore).toBe(true);
     });
 
     it('p-loading-show-more: should update property `p-loading-show-more` with invalid values.', () => {
-      expectPropertiesValues(component, 'loadingShowMore', booleanInvalidValues, false);
+      component.loadingShowMore = utilsFunctions.convertToBoolean('dsamkdsam');
+
+      expect(component.loadingShowMore).toBe(false);
     });
 
     it('p-auto-collapse: should update property `p-auto-collapse` with valid values.', () => {
-      expectPropertiesValues(component, 'autoCollapse', booleanValidTrueValues, true);
+      component.autoCollapse = utilsFunctions.convertToBoolean(1);
+
+      expect(component.autoCollapse).toBe(true);
     });
 
     it('p-auto-collapse: should update property `p-auto-collapse` with invalid values.', () => {
-      expectPropertiesValues(component, 'autoCollapse', booleanInvalidValues, false);
+      component.autoCollapse = utilsFunctions.convertToBoolean(555);
+
+      expect(component.autoCollapse).toBe(false);
     });
 
     it('p-infinite-scroll: should update property `p-infinite-scroll` with false.', () => {

@@ -2,6 +2,51 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+# [16.0.0](https://github.com/po-ui/po-angular/compare/v15.15.0...v16.0.0) (2023-09-05)
+
+### BREAKING CHANGES
+
+**angular:** deve ser utilizado o Angular v16
+
+Atualize seu projeto para utilizar a versão 16 do Angular, acesse a documentação [Guia de Atualização do Angular](https://update.angular.io/) para fazer a migração completa.
+
+Veja nossa [**documentação para fazer a migração**](https://po-ui.io/guides/migration-poui) para a versão 16
+
+### Bug Fixes
+
+* **lookup:** resolve disclaimer do lookup para o filtro booleano ([17e83c3](https://github.com/po-ui/po-angular/commit/17e83c3262dda0e08eb1f4b36963598fab4056f4))
+* **theme-builder:** ajusta estilização para o angular 16 ([c155b0d](https://github.com/po-ui/po-angular/commit/c155b0d3f8d95842d78db4cbb3f40e7d2ffbb177)), closes [#DTHFUI-7601](https://github.com/po-ui/po-angular/issues/DTHFUI-7601)
+
+### Build System
+
+* atualização para o angular 16 ([2ec81b1](https://github.com/po-ui/po-angular/pull/1802/commits/2ec81b145c113a6d9bc25312ca389b615c337a9c))
+
+### Features
+
+* **combo:** implementa uso do listbox ([07dafe9](https://github.com/po-ui/po-angular/commit/07dafe9ae1e726191ab0716368bce6655e5af7f1))
+* **dynamicform:** adiciona tipo `decimal` ([8df2611](https://github.com/po-ui/po-angular/commit/8df2611dd18bcb258857c39a7c589cb95400220b))
+
+
+# [15.15.0](https://github.com/po-ui/po-angular/compare/v15.14.0...v15.15.0) (2023-08-22)
+
+
+### Features
+
+* **search:** implementa busca na tabela ([060d9fb](https://github.com/po-ui/po-angular/commit/060d9fb59ddea9445af206ecf029199fcd3cd8f5))
+
+
+
+# [15.14.0](https://github.com/po-ui/po-angular/compare/v15.13.1...v15.14.0) (2023-08-08)
+
+
+### Features
+
+* **select:** possibilita o uso de sub itens ([e4afe06](https://github.com/po-ui/po-angular/commit/e4afe066701f2333cf248f571c13298a9ebc9eee))
+* **table:** cria propriedade p-spacing para a tabela ([b76b32c](https://github.com/po-ui/po-angular/commit/b76b32c3753b8464dca77923169e69a9642edae5))
+* **table:** implementa fixador de colunas ([7c49350](https://github.com/po-ui/po-angular/commit/7c49350e0a5fd082a6a81fddb19a96b3493af8b2))
+
+
+
 ## [15.13.1](https://github.com/po-ui/po-angular/compare/v15.13.0...v15.13.1) (2023-07-31)
 
 **build:** atualiza a versão do pacote de estilos `po-theme-totvs`.

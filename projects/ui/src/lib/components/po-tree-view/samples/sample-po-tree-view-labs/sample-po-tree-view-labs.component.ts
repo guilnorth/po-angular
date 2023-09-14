@@ -59,6 +59,7 @@ export class SamplePoTreeViewLabsComponent implements OnInit {
     this.itemProperties = [];
     this.selectable = undefined;
     this.treeViewItem = <any>{};
+    this.maxLevel = 4;
   }
 
   private getTreeViewItemNode(items: Array<PoTreeViewItem>, value: string) {

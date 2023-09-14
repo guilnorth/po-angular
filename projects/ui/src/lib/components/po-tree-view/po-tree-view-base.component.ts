@@ -67,6 +67,7 @@ export class PoTreeViewBaseComponent {
 
   private _items: Array<PoTreeViewItem> = [];
   private _selectable: boolean = false;
+  private _maxLevel = poTreeViewMaxLevel;
   private _singleSelect: boolean = false;
 
   // armazena o value do item selecionado
@@ -119,7 +120,6 @@ export class PoTreeViewBaseComponent {
     return this._singleSelect;
   }
 
-  private _maxLevel = poTreeViewMaxLevel;
   /**
    * @optional
    *

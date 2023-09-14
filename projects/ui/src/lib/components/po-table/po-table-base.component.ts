@@ -7,6 +7,7 @@ import { PoLanguageService } from '../../services/po-language/po-language.servic
 import { capitalizeFirstLetter, convertToBoolean, isTypeof, sortValues } from '../../utils/util';
 
 import { InputBoolean } from '../../decorators';
+import { PoFilterMode } from '../po-search/po-search-filter-mode.enum';
 import { PoTableColumnSortType } from './enums/po-table-column-sort-type.enum';
 import { PoTableColumnSpacing } from './enums/po-table-spacing.enum';
 import { PoTableAction } from './interfaces/po-table-action.interface';
@@ -136,7 +137,7 @@ export abstract class PoTableBaseComponent implements OnChanges, OnDestroy {
    * > Quando ocorrer a quebra de texto, ao passar o mouse no conteúdo da célula,
    * o mesmo será exibido através do [`po-tooltip`](/documentation/po-tooltip).
    */
-  @Input('p-hide-text-overflow') @InputBoolean() hideTextOverflow: boolean = false;
+  @Input({ alias: 'p-hide-text-overflow', transform: convertToBoolean }) hideTextOverflow: boolean = false;
 
   /**
    * @optional
@@ -147,8 +148,7 @@ export abstract class PoTableBaseComponent implements OnChanges, OnDestroy {
    *
    * @default `false`
    */
-  @Input('p-hide-columns-manager') @InputBoolean() hideColumnsManager?: boolean = false;
-
+  @Input({ alias: 'p-hide-columns-manager', transform: convertToBoolean }) hideColumnsManager: boolean = false;
   /**
    * @optional
    *
@@ -158,7 +158,7 @@ export abstract class PoTableBaseComponent implements OnChanges, OnDestroy {
    *
    * @default `false`
    */
-  @Input('p-hide-batch-actions') @InputBoolean() hideBatchActions?: boolean = false;
+  @Input({ alias: 'p-hide-batch-actions', transform: convertToBoolean }) hideBatchActions: boolean = false;
 
   /**
    * @optional
@@ -185,11 +185,22 @@ export abstract class PoTableBaseComponent implements OnChanges, OnDestroy {
    *
    * @description
    *
+   * Permite que o campo de pesquisa seja escondido.
+   *
+   * @default `false`
+   */
+  @Input({ alias: 'p-hide-table-search', transform: convertToBoolean }) hideTableSearch: boolean = false;
+
+  /**
+   * @optional
+   *
+   * @description
+   *
    * Permite fechar um detalhe ou row template automaticamente, ao abrir outro item.
    *
    * @default `false`
    */
-  @Input('p-auto-collapse') @InputBoolean() autoCollapse?: boolean = false;
+  @Input({ alias: 'p-auto-collapse', transform: convertToBoolean }) autoCollapse: boolean = false;
 
   /**
    * @optional
@@ -200,8 +211,7 @@ export abstract class PoTableBaseComponent implements OnChanges, OnDestroy {
    *
    * @default `false`
    */
-  @Input('p-loading-show-more') @InputBoolean() loadingShowMore?: boolean = false;
-
+  @Input({ alias: 'p-loading-show-more', transform: convertToBoolean }) loadingShowMore: boolean = false;
   /**
    * @optional
    *
@@ -212,7 +222,7 @@ export abstract class PoTableBaseComponent implements OnChanges, OnDestroy {
    *
    * @default `false`
    */
-  @Input('p-sort') @InputBoolean() sort: boolean = false;
+  @Input({ alias: 'p-sort', transform: convertToBoolean }) sort: boolean = false;
 
   /**
    * @description
@@ -221,7 +231,7 @@ export abstract class PoTableBaseComponent implements OnChanges, OnDestroy {
    *
    * @default `false`
    */
-  @Input('p-show-more-disabled') @InputBoolean() showMoreDisabled?: boolean = false;
+  @Input({ alias: 'p-show-more-disabled', transform: convertToBoolean }) showMoreDisabled: boolean = false;
 
   /**
    * @description
@@ -231,7 +241,7 @@ export abstract class PoTableBaseComponent implements OnChanges, OnDestroy {
    *
    * @default `false`
    */
-  @Input('p-striped') @InputBoolean() striped?: boolean = false;
+  @Input({ alias: 'p-striped', transform: convertToBoolean }) striped: boolean = false;
 
   /**
    * @description
@@ -242,7 +252,7 @@ export abstract class PoTableBaseComponent implements OnChanges, OnDestroy {
    *
    * @default `false`
    */
-  @Input('p-hide-select-all') @InputBoolean() hideSelectAll: boolean = false;
+  @Input({ alias: 'p-hide-select-all', transform: convertToBoolean }) hideSelectAll: boolean = false;
 
   /**
    * @description
@@ -251,7 +261,7 @@ export abstract class PoTableBaseComponent implements OnChanges, OnDestroy {
    *
    * > Esta definição não se aplica aos itens filhos, os mesmos possuem comportamento independente do item pai.
    */
-  @Input('p-single-select') @InputBoolean() singleSelect?: boolean = false;
+  @Input({ alias: 'p-single-select', transform: convertToBoolean }) singleSelect: boolean = false;
 
   /**
    * @description
@@ -262,7 +272,7 @@ export abstract class PoTableBaseComponent implements OnChanges, OnDestroy {
    *
    * @default `true`
    */
-  @Input('p-selectable-entire-line') @InputBoolean() selectableEntireLine?: boolean = true;
+  @Input({ alias: 'p-selectable-entire-line', transform: convertToBoolean }) selectableEntireLine: boolean = true;
 
   /**
    * @optional
@@ -273,7 +283,7 @@ export abstract class PoTableBaseComponent implements OnChanges, OnDestroy {
    *
    * @default `false`
    */
-  @Input('p-actions-right') @InputBoolean() actionRight?: boolean = false;
+  @Input({ alias: 'p-actions-right', transform: convertToBoolean }) actionRight: boolean = false;
 
   /**
    * @optional
@@ -287,6 +297,20 @@ export abstract class PoTableBaseComponent implements OnChanges, OnDestroy {
    * serão ignoradas por ordem de posição.
    */
   @Input('p-max-columns') maxColumns?: number;
+
+  /**
+   * @optional
+   *
+   * @description
+   *
+   * Define o modo de pesquisa utilizado no campo de busca, quando habilitado.
+   * Valores definidos no enum: PoSearchFilterMode
+   * > Obs: A pesquisa é realizada exclusivamente nos dados locais, ou seja, aqueles que foram
+   * > renderizados na tabela.
+   *
+   * @default `startsWith`
+   */
+  @Input('p-filter-type') filterType: PoFilterMode = PoFilterMode.startsWith;
 
   /**
    * @optional
@@ -427,8 +451,10 @@ export abstract class PoTableBaseComponent implements OnChanges, OnDestroy {
   showBatchActions: boolean = false;
   itemsSelected: Array<any> = [];
   paramsFilter: {};
+  filteredItems: Array<any> = [];
   private initialVisibleColumns: boolean = false;
   private _spacing: PoTableColumnSpacing = PoTableColumnSpacing.Medium;
+  private _filteredColumns: Array<string>;
   private _actions?: Array<PoTableAction> = [];
   private _columns: Array<PoTableColumn> = [];
   private _container?: string;
@@ -449,6 +475,14 @@ export abstract class PoTableBaseComponent implements OnChanges, OnDestroy {
   private _draggable?: boolean = false;
   private _hideActionFixedColumns?: boolean = false;
 
+  constructor(
+    private poDate: PoDateService,
+    languageService: PoLanguageService,
+    private poTableService: PoTableService
+  ) {
+    this.language = languageService.getShortLanguage();
+  }
+
   /**
    * @description
    *
@@ -468,7 +502,7 @@ export abstract class PoTableBaseComponent implements OnChanges, OnDestroy {
     } else if (!this.hasColumns) {
       this.columns = this.getDefaultColumns(items[0]);
     }
-
+    this.filteredItems = [...this.items];
     // timeout necessario para os itens serem refletidos na tabela
     setTimeout(() => this.checkInfiniteScroll());
   }
@@ -835,6 +869,23 @@ export abstract class PoTableBaseComponent implements OnChanges, OnDestroy {
     return this._spacing;
   }
 
+  /**
+   * @optional
+   *
+   * @description
+   *
+   * Define as colunas que serão filtradas no campo de pesquisa.
+   * Aceita um array de strings, representando as colunas específicas que serão consideradas na filtragem.
+   *
+   */
+  @Input('p-filtered-columns') set filteredColumns(values: Array<string>) {
+    this._filteredColumns = values;
+  }
+
+  get filteredColumns(): Array<string> {
+    return this._filteredColumns;
+  }
+
   get hasColumns(): boolean {
     return this.columns && this.columns.length > 0;
   }
@@ -872,6 +923,12 @@ export abstract class PoTableBaseComponent implements OnChanges, OnDestroy {
     );
   }
 
+  private getFilteredColumns(): void {
+    this.filteredColumns = this.columns
+      .filter(column => column.visible !== false)
+      .map(column => column.property || column.label);
+  }
+
   private get sortType(): PoTableColumnSortType {
     return this.sortedColumn.ascending ? PoTableColumnSortType.Ascending : PoTableColumnSortType.Descending;
   }
@@ -891,14 +948,6 @@ export abstract class PoTableBaseComponent implements OnChanges, OnDestroy {
 
   get draggable() {
     return this._draggable;
-  }
-
-  constructor(
-    private poDate: PoDateService,
-    languageService: PoLanguageService,
-    private poTableService: PoTableService
-  ) {
-    this.language = languageService.getShortLanguage();
   }
 
   ngOnDestroy() {
@@ -1122,6 +1171,7 @@ export abstract class PoTableBaseComponent implements OnChanges, OnDestroy {
     this.setMainColumns();
     this.setColumnMasterDetail();
     this.setSubtitleColumns();
+    this.getFilteredColumns();
   }
 
   private setColumnLink() {

@@ -56,7 +56,6 @@ export class PoTreeViewComponent extends PoTreeViewBaseComponent implements OnIn
 
   ngOnChanges(changes?: SimpleChanges) {
     if (changes?.['inputedItems']) {
-      // Chama o set items
       this.items = this.inputedItems;
     }
   }
